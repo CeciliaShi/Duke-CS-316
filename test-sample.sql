@@ -1,6 +1,6 @@
 CREATE TABLE Incident
 (id BIGINT NOT NULL PRIMARY KEY,
- datetime TIMESTAMP NOT NULL,
+ datetime TIMESTAMP,
  international INT NOT NULL,
  property_damage INT NOT NULL,
  nwound INT,
