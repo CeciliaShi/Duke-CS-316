@@ -1,22 +1,26 @@
 CREATE TABLE Incident
 (id BIGINT NOT NULL PRIMARY KEY,
- datetime DATE NOT NULL,
+ datetime TIMESTAMP NOT NULL,
  international INT NOT NULL,
  property_damage INT NOT NULL,
  nwound INT,
  nkill INT,
- CHECK(international IN (0,1,-9) AND property_damage IN (0,1,-9)),
- CHECK (id<1000000000000)
+ CHECK (international IN (0,1,-9)),
+ CHECK (property_damage IN (0,1,-9)),
+ CHECK (id<1000000000000),
+ CHECK (nwound >=0 OR nwound IS NULL),
+ CHECK (nkill >= 0 OR nkill IS NULL)
  );
 
 
 CREATE TABLE Location
-(latitude NUMERIC NOT NULL, 
- longitude NUMERIC NOT NULL ,
+(latitude NUMERIC NOT NULL CHECK(latitude <= 90 AND latitude >= -90), 
+ longitude NUMERIC NOT NULL CHECK(longitude <= 180 AND longitude >= -180),
  country VARCHAR(256),
  prov_state VARCHAR(256),
  city VARCHAR(256),
- PRIMARY KEY(latitude,longitude)
+ PRIMARY KEY(latitude,longitude),
+ UNIQUE(country, prov_state, city)
  );
 
 
@@ -25,7 +29,7 @@ CREATE TABLE Happened
 (latitude NUMERIC NOT NULL, 
  longitude NUMERIC NOT NULL ,
  incident_id BIGINT NOT NULL, 
- PRIMARY KEY(latitude,longitude,incident_id),
+ PRIMARY KEY(incident_id),
  FOREIGN KEY(latitude,longitude) REFERENCES Location(latitude,longitude),
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
  );
@@ -34,17 +38,15 @@ CREATE TABLE Happened
 
 CREATE TABLE InitiatedBy 
 (perpetrator_name VARCHAR(256) NOT NULL,
- incident_id BIGINT NOT NULL, 
- PRIMARY KEY(perpetrator_name,incident_id),
+ incident_id BIGINT NOT NULL PRIMARY KEY, 
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
  );
 
 
 
 CREATE TABLE Used
-(incident_id BIGINT NOT NULL, 
+(incident_id BIGINT NOT NULL PRIMARY KEY, 
  weapon_type VARCHAR(256) NOT NULL,
- PRIMARY KEY(incident_id,weapon_type),
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
 );
 
@@ -52,21 +54,20 @@ CREATE TABLE Used
 
 
 CREATE TABLE BelongedTo
-(incident_id BIGINT NOT NULL, 
+(incident_id BIGINT NOT NULL PRIMARY KEY, 
  attack_type VARCHAR(256) NOT NULL,
  succussful_attack INT NOT NULL,
  suicide_attack INT NOT NULL,
- PRIMARY KEY(incident_id,attack_type,succussful_attack,suicide_attack),
  FOREIGN KEY(incident_id) REFERENCES Incident(id),
- CHECK (succussful_attack IN (0,1) AND suicide_attack IN (0,1))
+ CHECK (succussful_attack IN (0,1)),
+ CHECK (suicide_attack IN (0,1))
  );
 
 
 
 CREATE TABLE Targeted
-(incident_id BIGINT NOT NULL,
+(incident_id BIGINT NOT NULL PRIMARY KEY,
  victime_type VARCHAR(256) NOT NULL,
- PRIMARY KEY(incident_id,victime_type),
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
 );
 
