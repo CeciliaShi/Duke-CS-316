@@ -1,124 +1,24 @@
-CREATE TABLE Incident
-(id BIGINT NOT NULL PRIMARY KEY,
- datetime TIMESTAMP,
- international INT NOT NULL,
- property_damage INT NOT NULL,
- nwound INT,
- nkill INT,
- CHECK (international IN (0,1,-9)),
- CHECK (property_damage IN (0,1,-9)),
- CHECK (id<1000000000000),
- CHECK (nwound >=0 OR nwound IS NULL),
- CHECK (nkill >= 0 OR nkill IS NULL)
- );
+-- selection option: user inputs location and time, time series trend in the given time and location will be generated
+SELECT international, property_damage, nwound, nkill
+FROM Incident, Location
+WHERE datetime <= '1970-07-02' AND 
+datetime >= '1970-03-24' AND 
+country = 'Dominican Republic';
 
 
-CREATE TABLE Location
-(latitude NUMERIC NOT NULL CHECK(latitude <= 90 AND latitude >= -90), 
- longitude NUMERIC NOT NULL CHECK(longitude <= 180 AND longitude >= -180),
- country VARCHAR(256),
- prov_state VARCHAR(256),
- city VARCHAR(256),
- PRIMARY KEY(latitude,longitude),
- UNIQUE(country, prov_state, city)
- );
+-- selection option: user inputs date and location, attack type pie chart will be generated
+CREATE VIEW AttackType AS 
+SELECT BelongedTo.attack_type, COUNT(*) AS count
+FROM Incident, Location, BelongedTo
+WHERE Incident.id = BelongedTo.incident_id AND 
+datetime <= '1970-07-02' AND 
+datetime >= '1970-03-24' AND 
+country = 'Dominican Republic' 
+GROUP BY BelongedTo.attack_type;
 
+CREATE VIEW Total AS
+SELECT SUM(count) as total
+FROM AttackType;
 
-
-CREATE TABLE Happened
-(latitude NUMERIC NOT NULL, 
- longitude NUMERIC NOT NULL ,
- incident_id BIGINT NOT NULL, 
- PRIMARY KEY(incident_id),
- FOREIGN KEY(latitude,longitude) REFERENCES Location(latitude,longitude),
- FOREIGN KEY(incident_id) REFERENCES Incident(id)
- );
-
-
-
-CREATE TABLE InitiatedBy 
-(perpetrator_name VARCHAR(256) NOT NULL,
- incident_id BIGINT NOT NULL PRIMARY KEY, 
- FOREIGN KEY(incident_id) REFERENCES Incident(id)
- );
-
-
-
-CREATE TABLE Used
-(incident_id BIGINT NOT NULL PRIMARY KEY, 
- weapon_type VARCHAR(256) NOT NULL,
- FOREIGN KEY(incident_id) REFERENCES Incident(id)
-);
-
-
-
-
-CREATE TABLE BelongedTo
-(incident_id BIGINT NOT NULL PRIMARY KEY, 
- attack_type VARCHAR(256) NOT NULL,
- succussful_attack INT NOT NULL,
- suicide_attack INT NOT NULL,
- FOREIGN KEY(incident_id) REFERENCES Incident(id),
- CHECK (succussful_attack IN (0,1)),
- CHECK (suicide_attack IN (0,1))
- );
-
-
-
-CREATE TABLE Targeted
-(incident_id BIGINT NOT NULL PRIMARY KEY,
- victime_type VARCHAR(256) NOT NULL,
- FOREIGN KEY(incident_id) REFERENCES Incident(id)
-);
-
-
-
-
----INSERT DATA
-
-INSERT INTO Incident(id, datetime, international, property_damage, nwound, nkill) VALUES
-(197000000001, '1970-07-02', 0, 0, 0, 1),
-(197003240002, '1970-03-24', 1, 0, 0, 0),
-(197001050001, '1970-01-01', -9, 1, 0, 0)
-;
-
-INSERT INTO Location VALUES
-(18.456792, -69.951164, 'Dominican Republic', NULL, 'Santo Domingo'),
---(18.456792, -69.951164, 'Dominican Republic', NULL, 'Santo Domingo'),
-(43.46850, -89.744299, 'United States', 'Wisconsin', 'Baraboo')
-;
-
-INSERT INTO Targeted(incident_id, victime_type) VALUES
-  (197000000001, 'Private Citizens & Property'),
-  (197003240002, 'Military'),
-  (197001050001,'Military')
-  ;
-
-
-INSERT INTO BelongedTo(incident_id,attack_type,succussful_attack,suicide_attack) VALUES
-  (197000000001, 'Assassination',1,0),
-  (197003240002, 'Hostage Taking (Kidnapping)', 1, 0),
-  (197001050001, 'Bombing/Explosion', 0, 0)
-  ;
-
-
-INSERT INTO Used(incident_id,weapon_type) VALUES
-  (197000000001, 'Unknown'),
-  (197003240002, 'Unknown'),
-  (197001050001, 'Explosives/Bombs/Dynamite')
-  ;
-
-
-
-INSERT INTO InitiatedBy(perpetrator_name,incident_id) VALUES
-  ('MANO-D',197000000001),
-  ('Dominican Popular Movement (MPD)', 197003240002),
-  ('Weather Underground, Weathermen',197001050001)
-  ;
-
-
-INSERT INTO Happened(latitude,longitude,incident_id) VALUES
-  (18.456792, -69.951164,197000000001),
-  (18.456792, -69.951164, 197003240002),
-  (43.46850, -89.744299,197001050001)
-  ;
+SELECT attack_type, count/Total AS perc
+FROM AttackType, Total;
