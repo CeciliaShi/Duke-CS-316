@@ -1,10 +1,15 @@
 Xilin Cecilia Shi:
+
 * Participated in the database design and wrote corresponding parts in the project proposal
 * Performed data pre-processing in Python
 * Wrote SQL code to check the validity of the database
 * Helped with the design of the web page
 
 Hao Sheng:
+
+* Maintained Github repository
+* Used flask/bootstrap to develop user interface for our web app
+* Participated in database design
 
 Xialingzi Jin:
 
