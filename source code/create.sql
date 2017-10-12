@@ -70,6 +70,11 @@ CREATE TABLE Targeted
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
 );
 
+CREATE TABLE Comment
+(user_id SERIAL NOT NULL PRIMARY KEY,
+ name VARCHAR(20) NOT NULL,
+ message VARCHAR(200) NOT NULL
+);
 
 
 --- CREATE A SAMPLE DATABASE
@@ -122,6 +127,10 @@ INSERT INTO Happened(latitude,longitude,incident_id) VALUES
   (43.46850, -89.744299,197001050001)
   ;
 
+INSERT INTO Comment(name, message) VALUES
+('Mike', 'We hope for a peaceful world!'),
+('Ben', 'I feel sorry for those who went through any of these horrible event.'),
+('Alice', 'We need to learn to protect ourselves and our beloved ones.');
 
 --- VALIDATE THE DESIGN
 --- THESE SHOULD NOT BE SUCCESSFULLY INSERTED INTO THE TABLE
