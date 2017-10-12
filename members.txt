@@ -1,19 +1,28 @@
-Cecilia (Xilin) Shi:
+Xilin Cecilia Shi:
+* Participated in the database design and wrote corresponding parts in the project proposal
+* Performed data pre-processing in Python
+* Wrote SQL code to check the validity of the database
+* Helped with the design of the web page
 
 Hao Sheng:
 
 Xialingzi Jin:
 
-* Brain storm E/R diagram for our database design
+* Brainstorm E/R diagram for our database design
 * Wrote SQL code used for creating tables, constraints, stored and procedures
 * Created test-sample.sql file that modifies the database on behalf of the user and tested such sql statement in the sample database. 
 
 Xiaozhou Wang:
 
-Participated in the design of database schema.Created tables and corresponding constraints. Wrote SQL queries that allow users to make selections.
+* Participated in the design of database schema
+* Created tables and corresponding constraints
+* Wrote SQL queries that allow users to make selections.
 
 Xingyu Yan:  
 
-brainstormed data application; finished E/R diagram, translated it into relations, and created corresponding part in the project report; processed and transformed data in python and generated visualizations; edited SQL queries.  
+* Brainstormed data application
+* Finished E/R diagram, translated it into relations, and created corresponding part in the project report
+* Processed and transformed data in python and generated visualizations
+* Edited SQL queries.  
 
 
