@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta charset="utf-8">
+        <title>References</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/duke_logo.ico') }}">
+    </head>
+
+    <header>
+        <ul class="nav nav-pills">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/worldmap/">World Map</a></li>
+            <li role="presentation"><a href="/trend/">Analysis</a></li>
+            <li role="presentation"><a href="/about-us/">About Us</a></li>
+            <li role="presentation" class="active"><a href="/comments/">Comments</a></li>
+            <p class="navbar-text navbar-right">
+                <a class="navbar-brand" href="https://github.com/hs220/Duke-CS-316">
+                    <img style="max-width:30px; margin-top: -25px; margin-right: 5px" src="{{ url_for('static', filename='img/github-logo.png') }}">
+                </a>
+            </p>
+        </ul>
+    </header>
+
+    <body>
+        <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <form action="" class="probootstrap-form">
+              <h2 class="text-black mt0">Leave a review</h2>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control"cols="30" rows="10" placeholder="Write a Message"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Comment">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <section class="probootstrap-section probootstrap-bg-light" data-section="reviews">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="probootstrap-testimonial">
+              <p class="mb10 probootstrap-rate">
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+              </p>
+              <blockquote>
+                <p>We hope for a peaceful world!</p>
+              </blockquote>
+              <p class="mb0">&mdash; Mike</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="probootstrap-testimonial">
+              <p class="mb10 probootstrap-rate">
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+              </p>
+              <blockquote>
+                <p>I feel sorry for those who went through any of these terrible event.</p>
+              </blockquote>
+              <p class="mb0">&mdash; Ben</p>
+            </div>
+          </div>
+          <div class="clearfix visible-sm-block"></div>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="probootstrap-testimonial">
+              <p class="mb10 probootstrap-rate">
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+                <i class="icon-star"></i>
+              </p>
+              <blockquote>
+                <p>We need to learn to protect ourselves and our beloved ones.</p>
+              </blockquote>
+              <p class="mb0">&mdash; Alice</p>
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+    </section>
+
+
+    </body>
+</html>
