@@ -6,4 +6,4 @@ Xialingzi Jin:
 
 Xiaozhou Wang:
 
-Xingyu Yan:
+Xingyu Yan:  brainstormed data application; finished E/R diagram, translated it into relations, and created corresponding part in the project report; processed and transformed data in python and generated visualizations; edited SQL queries.  
