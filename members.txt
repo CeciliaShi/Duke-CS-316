@@ -4,6 +4,5 @@ Hao Sheng:
 
 Xialingzi Jin:
 
-Xiaozhou Wang:
-
+Xiaozhou Wang: Participated in the design of database schema.Created tables and corresponding constraints. Wrote SQL queries that allow users to make selections. 
 Xingyu Yan:
