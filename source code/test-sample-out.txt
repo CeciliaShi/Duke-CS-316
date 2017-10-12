@@ -32,3 +32,31 @@ FROM AttackType, Total;
  Hostage Taking (Kidnapping) | 0.50000000000000000000
 (2 rows)
 
+-- selection option: user inputs date and location, perpatrator histogram will be generated
+SELECT InitiatedBy.perpetrator_name, COUNT(*) AS count
+FROM Incident, Location, InitiatedBy
+WHERE Incident.id = InitiatedBy.incident_id AND 
+datetime <= '1970-07-02' AND 
+datetime >= '1970-03-24' AND 
+country = 'Dominican Republic' 
+GROUP BY InitiatedBy.perpetrator_name;
+         perpetrator_name         | count 
+----------------------------------+-------
+ Dominican Popular Movement (MPD) |     1
+ MANO-D                           |     1
+(2 rows)
+
+-- selection option: user inputs date and location, target type histogram will be generated
+SELECT Targeted.victim_type, COUNT(*) AS count
+FROM Incident, Location, Targeted
+WHERE Incident.id = Targeted.incident_id AND 
+datetime <= '1970-07-02' AND 
+datetime >= '1970-03-24' AND 
+country = 'Dominican Republic' 
+GROUP BY Targeted.victim_type; 
+         victim_type         | count 
+-----------------------------+-------
+ Private Citizens & Property |     1
+ Military                    |     1
+(2 rows)
+
