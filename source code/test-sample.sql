@@ -22,3 +22,31 @@ FROM AttackType;
 
 SELECT attack_type, count/Total AS perc
 FROM AttackType, Total;
+
+-- selection option: user inputs date and location, perpatrator histogram will be generated
+SELECT InitiatedBy.perpetrator_name, COUNT(*) AS count
+FROM Incident, Location, InitiatedBy
+WHERE Incident.id = InitiatedBy.incident_id AND 
+datetime <= '1970-07-02' AND 
+datetime >= '1970-03-24' AND 
+country = 'Dominican Republic' 
+GROUP BY InitiatedBy.perpetrator_name;
+
+
+-- selection option: user inputs date and location, target type histogram will be generated
+SELECT Targeted.victim_type, COUNT(*) AS count
+FROM Incident, Location, Targeted
+WHERE Incident.id = Targeted.incident_id AND 
+datetime <= '1970-07-02' AND 
+datetime >= '1970-03-24' AND 
+country = 'Dominican Republic' 
+GROUP BY Targeted.victim_type; 
+
+
+
+
+
+
+
+
+
