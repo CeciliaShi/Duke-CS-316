@@ -1,12 +1,12 @@
 CREATE TABLE Incident
 (id BIGINT NOT NULL PRIMARY KEY,
- datetime DATE,
- international INT NOT NULL,
- property_damage INT NOT NULL,
+ date DATE,
+ international INT,
+ property_damage INT,
  nwound INT,
  nkill INT,
- CHECK (international IN (0,1,-9)),
- CHECK (property_damage IN (0,1,-9)),
+ CHECK (international IN (0,1)),
+ CHECK (property_damage IN (0,1)),
  CHECK (id<1000000000000 AND id>= 197000000001),
  CHECK (nwound >=0 OR nwound IS NULL),
  CHECK (nkill >= 0 OR nkill IS NULL)
@@ -51,7 +51,6 @@ CREATE TABLE Used
 
 
 
-
 CREATE TABLE BelongedTo
 (incident_id BIGINT NOT NULL PRIMARY KEY, 
  attack_type VARCHAR(256) NOT NULL,
@@ -67,6 +66,8 @@ CREATE TABLE BelongedTo
 CREATE TABLE Targeted
 (incident_id BIGINT NOT NULL PRIMARY KEY,
  victim_type VARCHAR(256) NOT NULL,
+ subtype VARCHAR(256) NOT NULL,
+ target VARCHAR(256) NOT NULL,
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
 );
 
@@ -80,7 +81,7 @@ CREATE TABLE Comment
 --- CREATE A SAMPLE DATABASE
 --- INSERT DATA 
 
-INSERT INTO Incident(id, datetime, international, property_damage, nwound, nkill) VALUES
+INSERT INTO Incident(id, date, international, property_damage, nwound, nkill) VALUES
 (197000000001, '1970-07-02', 0, 0, 0, 1),
 (197003240002, '1970-03-24', 1, 0, 0, 0),
 (197001050001, '1970-01-01', -9, 1, 0, 0)
@@ -140,7 +141,7 @@ INSERT INTO Location VALUES
 (18.456792, -69.951164, 'Dominican Republic', NULL, 'Santo Domingo');
 
 --- THIS VIOLATES THE CHECK OF INTERNATIONAL FOR THE TABLE INCIDENT
-INSERT INTO Incident(id, datetime, international, property_damage, nwound, nkill) VALUES
+INSERT INTO Incident(id, date, international, property_damage, nwound, nkill) VALUES
 (197001000002, '1970-07-01', 10, 0, 0, 1);
 
 --- THIS VIOLATES THE REFERNTIAL INTEGRITY
