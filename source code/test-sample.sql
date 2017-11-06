@@ -1,8 +1,8 @@
 -- selection option: user inputs location and time, time series trend in the given time and location will be generated
 SELECT international, property_damage, nwound, nkill
 FROM Incident, Location
-WHERE datetime <= '1970-07-02' AND 
-datetime >= '1970-03-24' AND 
+WHERE date <= '1970-07-02' AND 
+date >= '1970-03-24' AND 
 country = 'Dominican Republic';
 
 
@@ -11,8 +11,8 @@ CREATE VIEW AttackType AS
 SELECT BelongedTo.attack_type, COUNT(*) AS count
 FROM Incident, Location, BelongedTo
 WHERE Incident.id = BelongedTo.incident_id AND 
-datetime <= '1970-07-02' AND 
-datetime >= '1970-03-24' AND 
+date <= '1970-07-02' AND 
+date >= '1970-03-24' AND 
 country = 'Dominican Republic' 
 GROUP BY BelongedTo.attack_type;
 
@@ -27,8 +27,8 @@ FROM AttackType, Total;
 SELECT InitiatedBy.perpetrator_name, COUNT(*) AS count
 FROM Incident, Location, InitiatedBy
 WHERE Incident.id = InitiatedBy.incident_id AND 
-datetime <= '1970-07-02' AND 
-datetime >= '1970-03-24' AND 
+date <= '1970-07-02' AND 
+date >= '1970-03-24' AND 
 country = 'Dominican Republic' 
 GROUP BY InitiatedBy.perpetrator_name;
 
@@ -37,8 +37,8 @@ GROUP BY InitiatedBy.perpetrator_name;
 SELECT Targeted.victim_type, COUNT(*) AS count
 FROM Incident, Location, Targeted
 WHERE Incident.id = Targeted.incident_id AND 
-datetime <= '1970-07-02' AND 
-datetime >= '1970-03-24' AND 
+date <= '1970-07-02' AND 
+date >= '1970-03-24' AND 
 country = 'Dominican Republic' 
 GROUP BY Targeted.victim_type; 
 

@@ -1,10 +1,10 @@
 CREATE TABLE Incident
 (id BIGINT NOT NULL PRIMARY KEY,
- date DATE,
  international INT,
  property_damage INT,
  nwound INT,
  nkill INT,
+ date DATE,
  CHECK (international IN (0,1)),
  CHECK (property_damage IN (0,1)),
  CHECK (id<1000000000000 AND id>= 197000000001),
@@ -25,9 +25,9 @@ CREATE TABLE Location
 
 
 CREATE TABLE Happened
-(latitude NUMERIC NOT NULL, 
- longitude NUMERIC NOT NULL ,
- incident_id BIGINT NOT NULL, 
+(incident_id BIGINT NOT NULL,
+ latitude NUMERIC NOT NULL, 
+ longitude NUMERIC NOT NULL , 
  PRIMARY KEY(incident_id),
  FOREIGN KEY(latitude,longitude) REFERENCES Location(latitude,longitude),
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
@@ -36,8 +36,8 @@ CREATE TABLE Happened
 
 
 CREATE TABLE InitiatedBy 
-(perpetrator_name VARCHAR(256) NOT NULL,
- incident_id BIGINT NOT NULL PRIMARY KEY, 
+(incident_id BIGINT NOT NULL PRIMARY KEY, 
+ perpetrator_name VARCHAR(256) NOT NULL,
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
  );
 
