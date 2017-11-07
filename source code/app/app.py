@@ -6,17 +6,13 @@ app = Flask(__name__)
 def homepage():
     return render_template("index.html")
 
-@app.route('/worldmap/')
-def worldmap():
-	return render_template("worldmap.html")
-
-@app.route('/trend/')
-def trend():
-	return render_template("trend.html")
-
 @app.route('/about-us/')
-def about_us():
+def worldmap():
 	return render_template("about-us.html")
+
+@app.route('/visual/')
+def trend():
+	return render_template("visual.html")
 
 @app.route('/comments/')
 def comments():
