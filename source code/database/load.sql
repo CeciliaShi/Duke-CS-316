@@ -5,4 +5,4 @@
 \COPY Used(incident_id, weapon_type) FROM 'data/Used.csv' WITH DELIMITER ',' NULL '' CSV
 \COPY BelongedTo(incident_id, attack_type, succussful_attack, suicide_attack) FROM 'data/BelongedTo.csv' WITH DELIMITER ',' NULL '' CSV
 \COPY Targeted(incident_id, victim_type, subtype, target) FROM 'data/Targeted.csv' WITH DELIMITER ',' NULL '' CSV
-\COPY Comment(user_id, name, message) FROM 'data/Comment' WITH DELIMITER ',' NULL '' CSV
+--\COPY Comment(user_id, name, message) FROM 'data/Comment' WITH DELIMITER ',' NULL '' CSV
