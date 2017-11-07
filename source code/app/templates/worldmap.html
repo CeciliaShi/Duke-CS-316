@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta charset="utf-8">
+        <title>World Map</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/duke_logo.ico') }}">
+
+        <!-- Include Required Prerequisites -->
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/moment.js')}}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+        <!-- Include Date Range Picker -->
+        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    </head>
+
+    <header>
+        <ul class="nav nav-pills">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation" class="active"><a href="/worldmap/">World Map</a></li>
+            <li role="presentation"><a href="/trend/">Analysis</a></li>
+            <li role="presentation"><a href="/about-us/">About Us</a></li>
+            <li role="presentation"><a href="/comments/">Commentss</a></li>
+            <p class="navbar-text navbar-right">
+                <a class="navbar-brand" href="https://github.com/hs220/Duke-CS-316">
+                    <img style="max-width:30px; margin-top: -25px; margin-right: 5px" src="{{ url_for('static', filename='img/github-logo.png') }}">
+                </a>
+            </p>
+        </ul>
+    </header>
+
+    <body>
+        <div class="row">
+            <div class="col-md-3"">
+                <h4 style="text-align: center;"> Date Range </h4>
+        
+                <input style="margin:0px auto; display:block;" name="daterange" value="01/01/1970 - 12/31/2016" >
+
+                <h4 style="text-align: center;"> Intensity Measurement </h4>
+
+                <select class="selectpicker" style="margin:0px auto; display:block;">
+                    <option>Event Frequency</option>
+                    <option>Fatalities and injuries</option>
+                </select>
+
+
+                <script type="text/javascript">
+                $(function() {
+                    $('input[name="daterange"]').daterangepicker();
+                });
+                </script>
+                  
+            </div>
+            <div class="col-md-9">
+                <h1 style="text-align: center;"> Example Map</h1>
+                <img src="{{ url_for('static', filename='img/example_map.png') }}" style = "width: 900px" align="center">
+                </img>
+            </div>
+        </div>
+    </body>
+</html>

@@ -384,9 +384,7 @@ ul li {
 	margin: auto;
 }
 #portfolio .portfolio-item {
-	right: 0;
-	margin: 0 0 2px;
-	padding: 0 1px;
+	
 }
 #portfolio .portfolio-item .portfolio-link {
 	display: block;
