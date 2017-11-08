@@ -19,6 +19,7 @@ class Incident(db.Model):
         date = db.Column("date", db.Date())
         targeted = orm.relationship("Targeted", uselist=False, back_populates="incident")
         happened = orm.relationship("Happened", uselist=False, back_populates="incident")
+        belongedto = orm.relationship("BelongedTo", uselist=False, back_populates="incident")
 
 
 class Location(db.Model):
@@ -61,6 +62,7 @@ class BelongedTo(db.Model):
         attack_type = db.Column("attack_type", db.String(256), nullable = False)
         succussful_attack = db.Column("succussful_attack", db.Integer(), nullable = False)
         suicide_attack = db.Column("suicide_attack", db.Integer(), nullable = False)
+        incident = orm.relationship("Incident", back_populates="belongedto")
 
 class Targeted(db.Model):
         __tablename__ = "targeted"
