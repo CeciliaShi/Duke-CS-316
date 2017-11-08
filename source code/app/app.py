@@ -9,6 +9,7 @@ from Ploty.plot_victim import plot_victim, victim_type
 from Ploty.query_freq import freq, fq
 from Ploty.query_weapon_type import weapon, weapon_type
 from Ploty.victim_damage import victim_damage, base_query
+from Ploty.attack_info import attack_type, attack_info
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -44,7 +45,8 @@ def world_map():
 
 @app.route('/attack-type/')
 def attack_type():
-	return render_template("attack-type.html")
+	Attack = attack_info(attack_type)
+	return render_template("attack-type.html", Attack = Attack)
 
 @app.route('/victim-type/')
 def victim_type():

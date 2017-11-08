@@ -5,7 +5,9 @@ import pandas as pd
 import numpy as np
 import plotly.plotly as py
 import plotly.graph_objs as go
+import plotly
 
+plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
 
 #python -c "import plotly; plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')"
 
