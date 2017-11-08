@@ -15,7 +15,7 @@ base_query = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).la
 	).all()
 
 def victim_damage(res):
-	nkill = go.Bar(y=[v[0] for v in res],x=[v[1] for v in res],
+    nkill = go.Bar(y=[v[0] for v in res],x=[v[1] for v in res],
         name='fatality',
         marker=dict(color='rgb(49,130,189)',),
         orientation="h"
