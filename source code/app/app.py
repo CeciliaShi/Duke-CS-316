@@ -39,10 +39,5 @@ def world_map():
 def comments():
 	return render_template("comments.html")
 
-@app.route("/test" , methods=['GET', 'POST'])
-def test():
-    select = request.form.get('type')
-    return(str(select))
-
 if __name__ == "__main__":
     app.run()
