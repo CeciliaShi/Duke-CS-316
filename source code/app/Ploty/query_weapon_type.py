@@ -11,12 +11,12 @@ weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Use
     group_by(Used.weapon_type).
     order_by(func.count(Used.incident_id).desc()).
     all())
-
+weapon_type = pd.DataFrame(weapon_type)
 
 def weapon(df):
     weapon = go.Bar(
-        x=[v[0] for v in df],
-        y=[v[1] for v in df],
+        x=df['weapon_type'].tolist(),
+        y=df['count'].tolist(),
         text=y,
         textposition = 'auto',
         marker=dict(
