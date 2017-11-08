@@ -8,6 +8,7 @@ from Ploty.freq import freq
 from Ploty.plot_victim import plot_victim, victim_type
 from Ploty.query_freq import freq, fq
 from Ploty.query_weapon_type import weapon, weapon_type
+from Ploty.victim_damage import victim_damage, base_query
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -47,12 +48,14 @@ def attack_type():
 
 @app.route('/victim-type/')
 def victim_type():
-	return render_template("victim-type.html")
+	Victim = victim_damage(base_query)
+	return render_template("victim-type.html", Victim = Victim)
 
 @app.route('/weapon-type/')
 def weapon_type():
-	Weapon = weapon(weapon_type)
-	return render_template("weapon-type.html", Weapon = Weapon)
+#	Weapon = weapon(weapon_type)
+#	return render_template("weapon-type.html", Weapon = Weapon)
+	return render_template("weapon-type.html")
 
 @app.route('/comments/')
 def comments():
