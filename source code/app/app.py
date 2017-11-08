@@ -5,7 +5,8 @@ import pandas as pd
 ## local scripts
 from Ploty.kw import kill_wound
 from Ploty.freq import freq
-
+from Ploty.plot_victim import plot_victim, victim_type
+from Ploty.query_freq import freq, fq
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -26,13 +27,18 @@ def visual():
 @app.route('/world-map/')
 def world_map():
 	code = pd.read_csv("Ploty/code_correct.csv")
-	df = pd.read_csv("Ploty/freq.csv")
-	iframe = freq(df,code)
+	#df = pd.read_csv("Ploty/freq.csv")
+	#iframe = freq(df,code)
 	#df = pd.read_csv("Ploty/kw.csv")
 	#iframe = kill_wound(df,code)
 	#iframe = "https://plot.ly/~KimJin/0/550/550"
-	victim = plot_victim(victim_type)
-	return render_template("world-map.html", iframe = iframe, victim = victim)
+#	victim = plot_victim(victim_type)
+
+	frequency = freq(fq, code)
+	return render_template("world-map.html", frequency = frequency)
+#	return render_template("world-map.html", iframe = iframe, victim = victim)
+#	return render_template("world-map.html", victim = victim)
+
 
 @app.route('/attack-type/')
 def attack_type():

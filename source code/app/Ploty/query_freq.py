@@ -5,14 +5,15 @@ import plotly.plotly as py
 import plotly.graph_objs as go 
 import pandas as pd
 import plotly
-plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')
+plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
 
 fq = (db.session.query(Location.country).
 	join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).
 	all())
-fq = pd.DataFrame(fq)
+
 
 def freq(df, code):
+    df = pd.DataFrame(df)
     df_kw = pd.merge(df, code, how='left', left_on='country', right_on='country_txt').drop(['country_txt','country'],axis=1)
     df_freq=df_kw.groupby(['COUNTRY','CODE']).size().reset_index(name="Freq")
     

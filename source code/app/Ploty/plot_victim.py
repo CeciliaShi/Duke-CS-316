@@ -3,8 +3,9 @@ from models import db
 from sqlalchemy import func
 import plotly.plotly as py
 import plotly.graph_objs as go 
+import plotly
 
-#python -c "import plotly; plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')"
+# plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
 
 victim_type = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()
 
