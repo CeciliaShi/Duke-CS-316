@@ -14,11 +14,9 @@ weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Use
 
 
 def weapon(df):
-    y=[v[0] for v in df]
-    x=[v[1] for v in df]
     data = [go.Bar(
-        x=y,
-        y=x,
+        x=[v[0] for v in df],
+        y=[v[1] for v in df],
         text=y,
         textposition = 'auto',
         marker=dict(
