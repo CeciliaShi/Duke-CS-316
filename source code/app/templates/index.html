@@ -1,37 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">    
-    <head>
-        <meta charset="utf-8">
-        <title>Demo Homepage</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='img/duke_logo.ico') }}">
-    </head>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 
-    <header>
-        <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="/">Home</a></li>
-            <li role="presentation"><a href="/worldmap/">World Map</a></li>
-            <li role="presentation"><a href="/trend/">Analysis</a></li>
-            <li role="presentation"><a href="/about-us/">About Us</a></li>
-            <li role="presentation"><a href="/comments/">Comments</a></li>
-            <p class="navbar-text navbar-right">
-                <a class="navbar-brand" href="https://github.com/hs220/Duke-CS-316">
-                    <img style="max-width:30px; margin-top: -25px; margin-right: 5px" src="{{ url_for('static', filename='img/github-logo.png') }}">
-                </a>
-            </p>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visualizations of the Global Terrorism Database  </title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/flexslider.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<!-- Header Section -->
+<section class="tophead" role="tophead"> 
+  <!-- Navigation Section -->
+  <header id="header">
+    <div class="header-content clearfix"> <a class="logo" href="#">Global Terrorism</a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/visual/">Visualizations</a></li>
+          <li><a href="/comments/">Comments</a></li>
         </ul>
-        <p><img src="{{ url_for('static', filename='img/terror.png') }}" style = "width: 1250px" align="center"></p>
-    </header>
-
-    <body>
-        <div class="container-full-width">
-        <div class="row text-center mb100">
-          <div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
-            <h2 class="mb30 text-black probootstrap-heading">About Us</h2>
-            <p>This website enables users to interact with the Global Terrorism Data and produces visualizations based on the features that the user selects. We provide visualizations of terrorist events in terms of world map, time series plot and pie chart that shows the ditribution. </p>
-
-          </div>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+  </header>
+  <!-- Navigation Section --> 
+</section>
+<!-- Header Section --> 
+<!-- Slider Section -->
+<section id="header-slider" class="section">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active"> <img src="../static/img/slid1.jpg" alt="Chania">
+        <div class="carousel-caption">
+          <h3 style="color:white;">Global Terrorism </h3>
+          <p style="color:white;">This website enables users to interact with the Global Terrorism Data and produces visualizations based on the features that the user selects.</p>
         </div>
-    </body>
+      </div>
+      <div class="item"> <img src="../static/img/slid2.jpg" alt="Chania">
+      </div>
+      <div class="item"> <img src="../static/img/slid3.jpg" alt="Chania">
+      </div>
+    </div>
+
+    <!-- Controls --> 
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span></a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span></a></div>
+
+</section>
+<!-- Slider Section --> 
+
+<!-- About Us Section -->
+<section id="about-us" class="section services">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="services-content">
+          <h4>About Us</h4>
+          <p>This website enables users to interact with the Global Terrorism Data and produces visualizations based on the features that the user selects. We provide visualizations of terrorist events in terms of world map, time series plot and pie chart that shows the ditribution. </p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="services-content">
+          <h5>Members</h5>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/xialingzi-jin-616b2967/">Xialingzi (Kim) Jin</a></li>
+            <li><a href="https://www.linkedin.com/in/hao-sheng-7b113284/">Hao Sheng</a></li>
+            <li><a href="https://www.linkedin.com/in/xilin-cecilia-shi-433722b0/">Xilin Cecilia Shi</a></li>
+            <li><a href="https://www.linkedin.com/in/xiaozhou-wang-40929b91/">Xiaozhou Wang</a></li>
+            <li><a href="https://www.linkedin.com/in/xingyu-yan-9b498885/">Xingyu Yan</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="services-content">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="https://www.start.umd.edu/gtd/">GTD</a></li>
+            <li><a href="https://github.com/hs220/Duke-CS-316">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- About Us Section --> 
+
+
+<!-- JS FILES --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="{{ url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static', filename = 'js/jquery.flexslider-min.js')}}"></script>
+<!-- <script src="{{ url_for('static', filename = 'js/retina.min.js')}}"></script> -->
+<script src="{{ url_for('static', filename = 'js/modernizr.js')}}"></script> 
+<script src="{{ url_for('static', filename = 'js/main.js')}}"></script> 
+</body>
 </html>
