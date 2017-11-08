@@ -5,6 +5,7 @@ import pandas as pd
 ## local scripts
 from Ploty.kw import kill_wound
 from Ploty.freq import freq
+from Plot.plot_victim import plot_victim, victim_type 
 
 
 app = Flask(__name__)
@@ -31,7 +32,8 @@ def world_map():
 		#df = pd.read_csv("Ploty/kw.csv")
 		#iframe = kill_wound(df,code)
 		#iframe = "https://plot.ly/~KimJin/0/550/550"
-	return render_template("world-map.html", iframe = iframe)
+		victim = plot_victim(victim_type)
+	return render_template("world-map.html", iframe = iframe, victim = victim)
 
 @app.route('/comments/')
 def comments():
