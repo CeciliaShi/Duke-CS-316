@@ -5,7 +5,7 @@ import pandas as pd
 ## local scripts
 from Ploty.kw import kill_wound
 from Ploty.freq import freq
-from Plot.plot_victim import plot_victim, victim_type 
+from Ploty.plot_victim import plot_victim, victim_type 
 
 
 app = Flask(__name__)
