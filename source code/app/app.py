@@ -25,42 +25,42 @@ def visual():
 
 @app.route('/world-map/')
 def world_map():
-		code = pd.read_csv("Ploty/code_correct.csv")
-		df = pd.read_csv("Ploty/freq.csv")
-		iframe = freq(df,code)
-		#df = pd.read_csv("Ploty/kw.csv")
-		#iframe = kill_wound(df,code)
-		#iframe = "https://plot.ly/~KimJin/0/550/550"
+	code = pd.read_csv("Ploty/code_correct.csv")
+	df = pd.read_csv("Ploty/freq.csv")
+	iframe = freq(df,code)
+	#df = pd.read_csv("Ploty/kw.csv")
+	#iframe = kill_wound(df,code)
+	#iframe = "https://plot.ly/~KimJin/0/550/550"
 	return render_template("world-map.html", iframe = iframe)
 
 @app.route('/attack-type/')
 def attack_type():
-		code = pd.read_csv("Ploty/code_correct.csv")
-		df = pd.read_csv("Ploty/freq.csv")
-		iframe = freq(df,code)
-		#df = pd.read_csv("Ploty/kw.csv")
-		#iframe = kill_wound(df,code)
-		#iframe = "https://plot.ly/~KimJin/0/550/550"
+	code = pd.read_csv("Ploty/code_correct.csv")
+	df = pd.read_csv("Ploty/freq.csv")
+	iframe = freq(df,code)
+	#df = pd.read_csv("Ploty/kw.csv")
+	#iframe = kill_wound(df,code)
+	#iframe = "https://plot.ly/~KimJin/0/550/550"
 	return render_template("attack-type.html", iframe = iframe)
 
 @app.route('/victim-type/')
 def attack_type():
-		code = pd.read_csv("Ploty/code_correct.csv")
-		df = pd.read_csv("Ploty/freq.csv")
-		iframe = freq(df,code)
-		#df = pd.read_csv("Ploty/kw.csv")
-		#iframe = kill_wound(df,code)
-		#iframe = "https://plot.ly/~KimJin/0/550/550"
+	code = pd.read_csv("Ploty/code_correct.csv")
+	df = pd.read_csv("Ploty/freq.csv")
+	iframe = freq(df,code)
+	#df = pd.read_csv("Ploty/kw.csv")
+	#iframe = kill_wound(df,code)
+	#iframe = "https://plot.ly/~KimJin/0/550/550"
 	return render_template("victim-type.html", iframe = iframe)
 
 @app.route('/weapon-type/')
 def attack_type():
-		code = pd.read_csv("Ploty/code_correct.csv")
-		df = pd.read_csv("Ploty/freq.csv")
-		iframe = freq(df,code)
-		#df = pd.read_csv("Ploty/kw.csv")
-		#iframe = kill_wound(df,code)
-		#iframe = "https://plot.ly/~KimJin/0/550/550"
+	code = pd.read_csv("Ploty/code_correct.csv")
+	df = pd.read_csv("Ploty/freq.csv")
+	iframe = freq(df,code)
+	#df = pd.read_csv("Ploty/kw.csv")
+	#iframe = kill_wound(df,code)
+	#iframe = "https://plot.ly/~KimJin/0/550/550"
 	return render_template("weapon-type.html", iframe = iframe)
 
 @app.route('/comments/')
