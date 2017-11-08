@@ -20,7 +20,8 @@ def visual():
 
 @app.route('/world-map/')
 def world_map():
-	return render_template("world-map.html")
+	iframe = "https://plot.ly/~KimJin/0/550/550"
+	return render_template("world-map.html", iframe = iframe)
 
 @app.route('/comments/')
 def comments():
