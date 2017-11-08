@@ -20,6 +20,18 @@
 </head>
 
 <body>
+<script>
+$.fn.daterangepicker.noConflict = function(){
+   $.fn.daterangepicker = old;
+   return this;
+};
+</script>
+
+<script type="text/javascript">
+$(function() {
+    $('input[name="daterange"]').daterangepicker();
+});
+</script>
 
 <!-- Header Section -->
 <section class="tophead" role="tophead"> 
@@ -51,19 +63,22 @@
         </div>
       </div>
       <div class="col-md-4 work-detail-margin detail-contentbox">
+        <form class="form-signin"  role="form">
         <div class="detail-content">
           <h4 >Date Range </h4>
           <input style="margin:0px auto; display:block;" name="daterange" value="01/01/1970 - 12/31/2016" >
           <h4 style="text-align: center;"> Intensity Measurement </h4>
-          <select class="selectpicker" style="margin:0px auto; display:block;">
+          <select name="type" id="type" class="selectpicker" style="margin:0px auto; display:block;">
             <option>Event Frequency</option>
             <option>Fatalities and injuries</option>
           </select>
-          <button class="btn btn-primary" type="submit">Generate Plot</button>
-      </div>
+          <button class="btn btn-primary" type="botton">Generate Plot</button>
+        </div>
+        </form>
     </div>
   </div>
 </section>
+
 <!-- work details section --> 
 
 
@@ -81,6 +96,7 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/moment.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/temp.js')}}"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </body>
 </html>
