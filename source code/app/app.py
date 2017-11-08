@@ -26,13 +26,13 @@ def visual():
 
 @app.route('/world-map/')
 def world_map():
-		code = pd.read_csv("Ploty/code_correct.csv")
-		df = pd.read_csv("Ploty/freq.csv")
-		iframe = freq(df,code)
-		#df = pd.read_csv("Ploty/kw.csv")
-		#iframe = kill_wound(df,code)
-		#iframe = "https://plot.ly/~KimJin/0/550/550"
-		victim = plot_victim(victim_type)
+	code = pd.read_csv("Ploty/code_correct.csv")
+	df = pd.read_csv("Ploty/freq.csv")
+	iframe = freq(df,code)
+	#df = pd.read_csv("Ploty/kw.csv")
+	#iframe = kill_wound(df,code)
+	#iframe = "https://plot.ly/~KimJin/0/550/550"
+	victim = plot_victim(victim_type)
 	return render_template("world-map.html", iframe = iframe, victim = victim)
 
 @app.route('/comments/')
