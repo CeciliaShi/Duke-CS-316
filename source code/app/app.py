@@ -35,33 +35,15 @@ def world_map():
 
 @app.route('/attack-type/')
 def attack_type():
-	code = pd.read_csv("Ploty/code_correct.csv")
-	df = pd.read_csv("Ploty/freq.csv")
-	iframe = freq(df,code)
-	#df = pd.read_csv("Ploty/kw.csv")
-	#iframe = kill_wound(df,code)
-	#iframe = "https://plot.ly/~KimJin/0/550/550"
-	return render_template("attack-type.html", iframe = iframe)
+	return render_template("attack-type.html")
 
 @app.route('/victim-type/')
 def attack_type():
-	code = pd.read_csv("Ploty/code_correct.csv")
-	df = pd.read_csv("Ploty/freq.csv")
-	iframe = freq(df,code)
-	#df = pd.read_csv("Ploty/kw.csv")
-	#iframe = kill_wound(df,code)
-	#iframe = "https://plot.ly/~KimJin/0/550/550"
-	return render_template("victim-type.html", iframe = iframe)
+	return render_template("victim-type.html")
 
 @app.route('/weapon-type/')
 def attack_type():
-	code = pd.read_csv("Ploty/code_correct.csv")
-	df = pd.read_csv("Ploty/freq.csv")
-	iframe = freq(df,code)
-	#df = pd.read_csv("Ploty/kw.csv")
-	#iframe = kill_wound(df,code)
-	#iframe = "https://plot.ly/~KimJin/0/550/550"
-	return render_template("weapon-type.html", iframe = iframe)
+	return render_template("weapon-type.html")
 
 @app.route('/comments/')
 def comments():
