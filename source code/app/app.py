@@ -49,7 +49,8 @@ def attack_type():
 @app.route('/victim-type/')
 def victim_type():
 	Victim = victim_damage(base_query)
-	return render_template("victim-type.html", Victim = Victim)
+	Victim2 = plot_victim(victim_type)
+	return render_template("victim-type.html", Victim = Victim, Victim2 = Victim2)
 
 @app.route('/weapon-type/')
 def weapon_type():
