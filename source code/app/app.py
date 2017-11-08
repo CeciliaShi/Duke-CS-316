@@ -31,18 +31,19 @@ def world_map():
 	#df = pd.read_csv("Ploty/kw.csv")
 	#iframe = kill_wound(df,code)
 	#iframe = "https://plot.ly/~KimJin/0/550/550"
-	return render_template("world-map.html", iframe = iframe)
+	victim = plot_victim(victim_type)
+	return render_template("world-map.html", iframe = iframe, victim = victim)
 
 @app.route('/attack-type/')
 def attack_type():
 	return render_template("attack-type.html")
 
 @app.route('/victim-type/')
-def attack_type():
+def victim_type():
 	return render_template("victim-type.html")
 
 @app.route('/weapon-type/')
-def attack_type():
+def weapon_type():
 	return render_template("weapon-type.html")
 
 @app.route('/comments/')
