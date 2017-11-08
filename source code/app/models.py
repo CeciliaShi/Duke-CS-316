@@ -1,9 +1,9 @@
-from sqlalchemy import sql, orm
+from sqlalchemy import sql
 from app import db
 
 class Incident(db.Model):
-	__tablename__ = "Incident"
-	id = db.Column("Incident", db.BigInteger(), 
+	__tablename__ = "incident"
+	id = db.Column("id", db.BigInteger(), 
 		primary_key = True, nullable = False)
 	international = db.Column("international", db.Integer(), nullable = False)
 	property_damage = db.Column("property_damage", db.Integer(), nullable = False)
@@ -12,7 +12,7 @@ class Incident(db.Model):
 	date = db.Column("date", db.Date())
 
 class Location(db.Model):
-	__tablename__ = "Location"
+	__tablename__ = "location"
 	latitude = db.Column("latitude", db.Numeric(), 
 		primary_key = True, nullable = False)
 	longitude = db.Column("longitude", db.Numeric(),
@@ -22,7 +22,7 @@ class Location(db.Model):
 	city = db.Column("city", db.String(256))
 
 class Happened(db.Model):
-	__tablename__ = "Happened"
+	__tablename__ = "happened"
 	incident_id = db.Column("incident_id", db.BigInteger(), db.ForeignKey("Incident.id"), 
 		nullable = False, primary_key = True)
 	latitude = db.Column("latitude", db.Numeric(), 
@@ -31,27 +31,19 @@ class Happened(db.Model):
 		db.ForeignKey("Location.longitude"),nullable = False)
 
 class InitiatedBy(db.Model):
-	__tablename__ = "InitiatedBy"
+	__tablename__ = "initiatedBy"
 	incident_id = db.Column("incident_id", db.BigInteger(), db.ForeignKey("Incident.id"), 
 		nullable = False, primary_key = True)
 	perpetrator_name = db.Column("perpetrator_name", db.String(256), nullable = False)
 
 class Used(db.Model):
-	__tablename__ = "Used"
+	__tablename__ = "used"
 	incident_id = db.Column("incident_id", db.BigInteger(), db.ForeignKey("Incident.id"), 
 		nullable = False, primary_key = True)
 	weapon_type = db.Column("weapon_type", db.String(256), nullable = False)
 
-class BelongedTo(db.Model):
-	__tablename__ = "BelongedTo"
-	incident_id = db.Column("incident_id", db.BigInteger(), db.ForeignKey("Incident.id"), 
-		nullable = False, primary_key = True)
-	attack_type = db.Column("attack_type", db.String(256), nullable = False)
-	succussful_attack = db.Column("succussful_attack", db.Integer(), nullable = False)
-	suicide_attack = db.Column("suicide_attack", db.Integer(), nullable = False())
-
 class Targeted(db.Model):
-	__tablename__ = "Targeted"
+	__tablename__ = "targeted"
 	incident_id = db.Column("incident_id", db.BigInteger(), db.ForeignKey("Incident.id"), 
 		nullable = False, primary_key = True)
 	victim_type = db.Column("victim_type", db.String(256), nullable = False)
@@ -59,7 +51,7 @@ class Targeted(db.Model):
 	target = db.Column("target", db.String(500), nullable = False)
 
 class Comment(db.Model):
-	__tablename__ = "Comment"
-	user_id = db.Column("user_id", db.Sequence('user_id_seq'), nullable = False)
+	__tablename__ = "comment"
+	user_id = db.Column("user_id", db.Sequence('user_id_seq'), nullable = False, primary_key = True)
 	name = db.Column("name",db.String(20), nullable = False)
 	message = db.Column("message", db.String(200), nullable = False)
