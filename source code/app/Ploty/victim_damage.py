@@ -20,8 +20,7 @@ def victim_damage(res):
         marker=dict(color='rgb(49,130,189)',),
         orientation="h"
         )
-    nwound = go.Bar(y=[v[0] for v in res],
-        x=[v[2] for v in res],
+    nwound = go.Bar(y=[v[0] for v in res],x=[v[2] for v in res],
         name='injury',
         marker=dict(color='rgb(204,204,204)',), 
         orientation="h"
