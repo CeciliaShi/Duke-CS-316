@@ -7,6 +7,7 @@ from Ploty.kw import kill_wound
 from Ploty.freq import freq
 from Ploty.plot_victim import plot_victim, victim_type
 from Ploty.query_freq import freq, fq
+from Ploty.query_weapon_type import weapon, weapon_type
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -50,6 +51,7 @@ def victim_type():
 
 @app.route('/weapon-type/')
 def weapon_type():
+	Weapon = weapon(weapon_type)
 	return render_template("weapon-type.html")
 
 @app.route('/comments/')
