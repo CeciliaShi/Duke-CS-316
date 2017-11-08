@@ -54,9 +54,9 @@ def victim_type():
 
 @app.route('/weapon-type/')
 def weapon_type():
-#	Weapon = weapon(weapon_type)
-#	return render_template("weapon-type.html", Weapon = Weapon)
-	return render_template("weapon-type.html")
+	Weapon = weapon(weapon_type)
+	return render_template("weapon-type.html", Weapon = Weapon)
+#	return render_template("weapon-type.html")
 
 @app.route('/comments/')
 def comments():
