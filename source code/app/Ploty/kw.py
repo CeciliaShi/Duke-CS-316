@@ -1,4 +1,7 @@
-! python -c "import plotly; plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')"
+import plotly
+import plotly.plotly as py
+import pandas as pd
+plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')
 
 def kill_wound(df, code):
     df = df[pd.notnull(df['date'])]
@@ -42,7 +45,7 @@ def kill_wound(df, code):
 
     fig = dict( data=data, layout=layout )
     plot_url = py.plot( fig, validate=False, filename='d3-world-map',auto_open = False)
-    iframe_string = '<iframe id="igraph" style="border:none" src="'  
-    iframe_string = iframe_string+plot_url+'/550/550" width="100%" height="700"></iframe>'
+    #iframe_string = '<iframe id="igraph" style="border:none" src="'  
+    #iframe_string = iframe_string+plot_url+'/550/550" width="100%" height="700"></iframe>'
     
-    return iframe_string
+    return plot_url
