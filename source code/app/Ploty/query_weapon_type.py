@@ -14,7 +14,7 @@ weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Use
 
 
 def weapon(df):
-    data = [go.Bar(
+    weapon = go.Bar(
         x=[v[0] for v in df],
         y=[v[1] for v in df],
         text=y,
@@ -26,7 +26,8 @@ def weapon(df):
                 width=1.5),
             ),
         opacity=0.6,
-        orientation = 'h')]
+        orientation = 'h')
+    data = [weapon]
     layout = go.Layout(title='Weapon Type Frequency')
     fig = go.Figure(data=data, layout=layout)
     p1 = py.plot(fig, filename='weapon_type', auto_open=False)
