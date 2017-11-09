@@ -5,7 +5,7 @@ import plotly.plotly as py
 import plotly.graph_objs as go 
 import pandas as pd
 import plotly
-#plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
+plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
 
 fq = (db.session.query(Location.country).
 	join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).
@@ -34,6 +34,7 @@ def freq(df, code):
                 width = 0.5
             ) ),
         colorbar = dict(
+            thickness = 10,
             autotick = False,
             title = 'Frequency'),
       ) ]
@@ -43,7 +44,6 @@ def freq(df, code):
     geo = dict(
         showframe = False,
         showcoastlines = False,
-        showlegend = False,
         projection = dict(
             type = 'Mercator'
             )
