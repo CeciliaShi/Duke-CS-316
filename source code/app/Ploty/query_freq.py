@@ -43,6 +43,7 @@ def freq(df, code):
     geo = dict(
         showframe = False,
         showcoastlines = False,
+        showlegend = False,
         projection = dict(
             type = 'Mercator'
             )
