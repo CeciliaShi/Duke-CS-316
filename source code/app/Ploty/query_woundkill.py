@@ -47,6 +47,7 @@ def kill_wound(df, code):
     	title = '45 Years of Terrorism:1970-2015',
     	geo = dict(
     		showframe = False,
+            showlegend = False,
     		showcoastlines = False,
     		projection = dict(
     			type = 'Mercator')	
