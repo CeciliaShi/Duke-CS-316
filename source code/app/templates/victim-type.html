@@ -55,7 +55,7 @@ $(function() {
 <section id="work-detail" class="section work-detail">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8 work-detail-margin detail-image">
+      <div class="col-md-12 work-detail-margin detail-image">
         <div class="work-image">
         <p><div>
         <iframe id="igraph" style="border:none" src="{{Victim2}}" width="100%" height="700"></iframe>              
@@ -65,20 +65,6 @@ $(function() {
         </div> </p>
         </div>
       </div>
-      <div class="col-md-4 work-detail-margin detail-contentbox">
-        <form class="form-signin"  role="form">
-        <div class="detail-content">
-          <h4 >Date Range </h4>
-          <input style="margin:0px auto; display:block;" name="daterange" value="01/01/1970 - 12/31/2016" >
-          <h4 style="text-align: center;"> Intensity Measurement </h4>
-          <select name="type" id="type" class="selectpicker" style="margin:0px auto; display:block;">
-            <option>Event Frequency</option>
-            <option>Fatalities and injuries</option>
-          </select>
-          <button class="btn btn-primary" type="botton">Generate Plot</button>
-        </div>
-        </form>
-    </div>
   </div>
 </section>
 
@@ -99,7 +85,6 @@ $(function() {
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/moment.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/temp.js')}}"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </body>
 </html>
