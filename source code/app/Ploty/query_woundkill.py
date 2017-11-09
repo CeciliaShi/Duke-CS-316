@@ -38,6 +38,7 @@ def kill_wound(df, code):
                 width = 0.5
             ) ),
         colorbar = dict(
+            thickness = 10,
             autotick = False,
             title = 'Intensity<br>Combining fatalities and injuries'),
       			) 

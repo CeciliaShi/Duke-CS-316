@@ -7,7 +7,7 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import plotly
 
-plotly.tools.set_credentials_file(username='Xingyu', api_key='xcgDva8EbQkqviNhVXYS')
+#plotly.tools.set_credentials_file(username='Xingyu', api_key='xcgDva8EbQkqviNhVXYS')
 
 #python -c "import plotly; plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')"
 
