@@ -1,3 +1,11 @@
+# Folders explained
+
+`sql`: includes the sql code for testing on the sample database (mainly for ms1)
+
+`app`: includes the flask web application
+
+`database`: includes setup scripts for the database
+
 # Instruction on generating the "production" dataset
 
 ## 1. Download all (8) csv files from [dropbox](https://www.dropbox.com/sh/z8erhydvfj85kj6/AAA5KLGdEDDBrNYbXveVmyzZa?dl=0) 
@@ -24,13 +32,28 @@ The script will generate 7 csv files which are the same from the drop box.
 ## 4. Make `setup.sh` executable by running commands at below:
 
 ```bash
-$ cd /opt/dbcourse/source\ code/database/
+$ cd /opt/dbcourse/Duke-CS-316/source\ code/database/
 $ sudo chmod +x setup.sh
 ```
 
 ## 5. Run `setup.sh`:
 ```bash
-$ /opt/dbcourse/source\ code/database/setup.sh
+$ /opt/dbcourse/Duke-CS-316/source\ code/database/setup.sh
 ```
 
 Then the database is ready!
+
+# Instruction on running the web app
+
+## 1. Make sure you have set up the database as indicated in the last section
+
+## 2. On your vm, run `app.py`
+
+```bash
+$ cd /opt/dbcourse/Duke-CS-316/source\ code/app
+$ python app.py
+```
+
+\*Notice, if your vm is on google cloud, make sure to add `-L 5000:localhost -L` to your ssh command.
+
+## 3. Open your browser and go to http://127.0.0.1:5000/ or http://localhost:5000
