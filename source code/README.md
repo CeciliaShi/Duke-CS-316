@@ -2,7 +2,7 @@
 
 ## 1. Download all (8) csv files from [dropbox](https://www.dropbox.com/sh/z8erhydvfj85kj6/AAA5KLGdEDDBrNYbXveVmyzZa?dl=0) 
 
-Alternative: request data from [umd](https://www.start.umd.edu/gtd/contact/) to get the excel file (we have one availble on [dropbox](https://www.dropbox.com/s/j6f6rjkcdf6qvu7/globalterrorismdb_0617dist.xlsx?dl=0)). Notice you still need to download `comments.csv` from the [first dropbox link](https://www.dropbox.com/sh/z8erhydvfj85kj6/AAA5KLGdEDDBrNYbXveVmyzZa?dl=0)
+Alternative: request data from [umd](https://www.start.umd.edu/gtd/contact/) to get the excel file (we have one available on [dropbox](https://www.dropbox.com/s/j6f6rjkcdf6qvu7/globalterrorismdb_0617dist.xlsx?dl=0)). Notice you still need to download `comments.csv` from the [first dropbox link](https://www.dropbox.com/sh/z8erhydvfj85kj6/AAA5KLGdEDDBrNYbXveVmyzZa?dl=0)
 
 
 ## 2. Log into the vm and clone our github repo under `/opt/dbcourse/`:
@@ -21,14 +21,14 @@ $ python Preprocess.py --fname globalterrorismdb_0617dist.xlsx
 
 The script will generate 7 csv files which are the same from the drop box.
 
-## 4. make `setup.sh` executable by running commands at below:
+## 4. Make `setup.sh` executable by running commands at below:
 
 ```bash
 $ cd /opt/dbcourse/source\ code/database/
 $ sudo chmod +x setup.sh
 ```
 
-## 5. run `setup.sh`:
+## 5. Run `setup.sh`:
 ```bash
 $ /opt/dbcourse/source\ code/database/setup.sh
 ```
