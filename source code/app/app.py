@@ -10,7 +10,7 @@ from Ploty.query_freq import freq, fq
 from Ploty.query_weapon_type import weapon, weapon_type
 from Ploty.victim_damage import victim_damage, base_query
 from Ploty.attack_info import attack_type, attack_info
-import trend
+import Ploty.trend as trend
 
 app = Flask(__name__)
 app.config.from_object('config')
