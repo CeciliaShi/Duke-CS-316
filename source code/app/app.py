@@ -11,6 +11,7 @@ from Ploty.query_weapon_type import weapon, weapon_type
 from Ploty.victim_damage import victim_damage, base_query
 from Ploty.attack_info import attack_type, attack_info
 import Ploty.trend as trend
+from Ploty.victim_subtype import victim_subtype, query_subtype
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -54,7 +55,8 @@ def attackType():
 def victimType():
 	Victim = victim_damage(base_query)
 	Victim2 = plot_victim(victim_type)
-	return render_template("victim-type.html", Victim = Victim, Victim2 = Victim2)
+	Victim3 = victim_subtype(query_subtype)
+	return render_template("victim-type.html", Victim = Victim, Victim2 = Victim2, Victim3 = Victim3)
 
 @app.route('/weapon-type/')
 def weaponType():
