@@ -17,7 +17,7 @@ def weapon(df):
     weapon = go.Bar(
         y=df['weapon_type'].tolist(),
         x=df['count'].tolist(),
-        text=df['weapon_type'].tolist(),
+        #text=df['weapon_type'].tolist(),
         textposition = 'auto',
         marker=dict(
             color='rgb(158,202,225)',
