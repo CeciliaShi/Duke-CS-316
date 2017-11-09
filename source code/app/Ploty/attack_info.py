@@ -53,10 +53,7 @@ def attack_info(df):
 
     fig = go.Figure(data=data, layout=layout)
     plot_url = py.plot(fig, filename='attacks_info',auto_open = False)
-    iframe_string = '<iframe id="igraph" style="border:none" src="'  
-    iframe_string = iframe_string+plot_url+'/550/550" width="100%" height="700"></iframe>'
-    
-    return iframe_string
+    return plot_url
         
         
 
