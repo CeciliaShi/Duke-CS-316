@@ -56,4 +56,4 @@ $ python app.py
 
 \*Notice, if your vm is on google cloud, make sure to add `-L 5000:localhost -L` to your ssh command.
 
-## 3. Open your browser and go to http://127.0.0.1:5000/ or localhost:5000
+## 3. Open your browser and go to http://127.0.0.1:5000/ or http://localhost:5000
