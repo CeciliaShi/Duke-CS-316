@@ -44,18 +44,18 @@ def world_map():
 
 
 @app.route('/attack-type/')
-def attack_type():
+def attackType():
 	Attack = attack_info(attack_type)
 	return render_template("attack-type.html", Attack = Attack)
 
 @app.route('/victim-type/')
-def victim_type():
+def victimType():
 	Victim = victim_damage(base_query)
 	Victim2 = plot_victim(victim_type)
 	return render_template("victim-type.html", Victim = Victim, Victim2 = Victim2)
 
 @app.route('/weapon-type/')
-def weapon_type():
+def weaponType():
 	Weapon = weapon(weapon_type)
 	return render_template("weapon-type.html", Weapon = Weapon)
 #	return render_template("weapon-type.html")
@@ -70,4 +70,4 @@ def test():
     return(str(select))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host = "0.0.0.0")
