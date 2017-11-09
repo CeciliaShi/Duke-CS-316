@@ -3,9 +3,7 @@ Xilin Cecilia Shi:
 * Participated in the database design and wrote corresponding parts in the project proposal
 * Performed data pre-processing in Python
 * Wrote SQL code to check the validity of the database
-* Helped with the construction of the web page using HTML
-* Improved the web interface by adding more features and pages
-* Helped with the connection of the database and webpage
+* Helped with the design of the web page
 
 Hao Sheng:
 
@@ -37,9 +35,11 @@ Xiaozhou Wang:
 
 Xingyu Yan:  
 
-* Brainstormed data application
-* Finished E/R diagram, translated it into relations, and created corresponding part in the project report
-* Processed and transformed data in python and generated visualizations
-* Edited SQL queries.  
+* Brainstormed data application.
+* Finished E/R diagram, translated it into relations, and created corresponding part in the project report.
+* Processed and transformed data in python and generated visualizations.
+* Set up the database in the virtual machine. 
+* Queried data using sqlalchemy and generated visualizations using plotly in Python.   
+
 
 
