@@ -13,8 +13,8 @@ query_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), fu
 
 def victim_subtype(res):
     nkill = go.Pie(
-        values = [v[0] for v in res],
-        labels = [v[1] for v in res],
+        labels = [v[0] for v in res],
+        values = [v[1] for v in res],
         domain = {"x": [0, .48]},
         name = "fatality",
         hoverinfo = "label+percent+name",
@@ -23,8 +23,8 @@ def victim_subtype(res):
         textinfo = 'none'    
         )
     nwound = go.Pie(
-        values = [v[0] for v in res],
-        labels = [v[2] for v in res],
+        labels = [v[0] for v in res],
+        values = [v[2] for v in res],
         textposition ="inside",
         domain = {"x": [.52, 1]},
         name = "fatality",
