@@ -1,7 +1,7 @@
 import plotly
 import plotly.plotly as py
 import pandas as pd
-plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')
+#plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')
 
 def kill_wound(df, code):
     df = df[pd.notnull(df['date'])]

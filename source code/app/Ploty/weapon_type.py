@@ -7,7 +7,7 @@ import plotly.plotly as py
 import plotly.graph_objs as go 
 import pandas as pd
 
-weapon_type = db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type).group_by(Used.weapon_type).order_by(func.count(Used.incident_id).desc()).all()
+#weapon_type = db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type).group_by(Used.weapon_type).order_by(func.count(Used.incident_id).desc()).all()
 
 def weapon(df):
     df=pd.DataFrame(df)

@@ -6,7 +6,7 @@ import plotly.plotly as py
 import plotly.graph_objs as go 
 import plotly
 
-plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
+#plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
 
 base_query = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
 	.join(Targeted.incident)

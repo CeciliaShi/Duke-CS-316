@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import models
 import pandas as pd
+import plotly
+import plotly_conf as conf
 ## local scripts
 from Ploty.kw import kill_wound
 from Ploty.freq import freq
@@ -12,6 +14,8 @@ from Ploty.victim_damage import victim_damage, base_query
 from Ploty.attack_info import attack_type, attack_info
 import Ploty.trend as trend
 from Ploty.victim_subtype import victim_subtype, query_subtype
+
+plotly.tools.set_credentials_file(username=conf.pp_conf["username"], api_key=conf.pp_conf["api_key"])
 
 app = Flask(__name__)
 app.config.from_object('config')

@@ -5,7 +5,7 @@ import plotly.graph_objs as go
 import pandas as pd
 import plotly
 
-plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
+#plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
 
 weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type).
     group_by(Used.weapon_type).
