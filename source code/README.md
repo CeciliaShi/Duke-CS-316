@@ -1,7 +1,9 @@
 # Folders explained
 
-`sql`: includes the sql code for testing on the sample database (mainly for ms1).
+`sql`: includes the sql code for testing on the sample database (mainly for ms1)
+
 `app`: includes the flask web application
+
 `database`: includes setup scripts for the database
 
 # Instruction on generating the "production" dataset
