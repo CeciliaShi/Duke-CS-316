@@ -15,13 +15,19 @@ Xialingzi Jin:
 
 * Brainstorm E/R diagram for our database design
 * Wrote SQL code used for creating tables, constraints, stored and procedures
-* Created test-sample.sql file that modifies the database on behalf of the user and tested such sql statement in the sample database. 
+* Created test-sample.sql file that modifies the database on behalf of the user and tested such sql statement in the sample database 
+* Made visualization plots
+* Cleaned and connected outside data 
+* Created three python scripts used for web visualization 
 
 Xiaozhou Wang:
 
 * Participated in the design of database schema
 * Created tables and corresponding constraints
-* Wrote SQL queries that allow users to make selections.
+* Wrote SQL queries that allow users to make selections
+* Made visualization plots
+* Cleaned and connected outside data
+* Created three python scripts used for web visualization  
 
 Xingyu Yan:  
 
