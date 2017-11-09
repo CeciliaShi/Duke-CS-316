@@ -384,12 +384,14 @@ ul li {
 	margin: auto;
 }
 #portfolio .portfolio-item {
-	
+	margin-top: 7%;
 }
 #portfolio .portfolio-item .portfolio-link {
 	display: block;
 	position: relative;
 	margin: 0 auto;
+	height: 367px;
+	width: 600px;
 }
 #portfolio .portfolio-item .portfolio-link .caption {
 	position: absolute;
@@ -515,10 +517,11 @@ ul li {
 
 .work-detail {
 	width: 94%;
-	margin: auto;
+	margin: 0px;
 }
 .work-detail-margin {
 	margin-top: 7%;
+	height: 367px;
 }
 .detail-image img {
 	width: 100%;
@@ -526,6 +529,7 @@ ul li {
 .detail-contentbox {
 	background-color: #f2f2f2;
 	padding: 3%;
+	margin-top: 7%;
 }
 .detail-content h4 {
 	font-size: 27px;
