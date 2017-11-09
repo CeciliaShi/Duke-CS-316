@@ -7,18 +7,19 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import plotly
 
-plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
+plotly.tools.set_credentials_file(username='Xingyu', api_key='xcgDva8EbQkqviNhVXYS')
 
 #python -c "import plotly; plotly.tools.set_credentials_file(username='KimJin', api_key='kgTp9k4kEV7XfpUolr60')"
 
 
 
-attack_type = (db.session.query(Incident.international,Incident.property_damage).
+attack_type = (db.session.query(Incident.international,Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
                join(BelongedTo, Incident.id == BelongedTo.incident_id).all()) 
 
+attack_type =  pd.DataFrame(attack_type)
 
 def attack_info(df):
-    df =  pd.DataFrame(df)
+
     intn_y = round(float(np.float64(((df['international'] == 1).sum()/(df['international'] != -9).sum())*100)),2)
     prop_y = round(float(np.float64(((df['property_damage'] == 1).sum()/(df['property_damage'] != -9).sum())*100)),2)
     suicide_y = round(float(np.float64(((df['suicide_attack'] == 1).sum()/(df['suicide_attack'] != -9).sum())*100)),2)
@@ -58,4 +59,5 @@ def attack_info(df):
     return iframe_string
         
         
+
 
