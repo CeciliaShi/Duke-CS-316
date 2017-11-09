@@ -25,10 +25,12 @@ def weapon(df):
                 color='rgb(8,48,107)',
                 width=1.5),
             ),
-        opacity=0.6,
+        opacity=0.8,
         orientation = 'h')
     data = [weapon]
-    layout = go.Layout(title='Weapon Type Frequency')
+    layout = go.Layout(title='Weapon Type Frequency',
+        margin=go.Margin(l=200, r=50, b=100, t=100, pad=4),
+        barmode='stack')
     fig = go.Figure(data=data, layout=layout)
     p1 = py.plot(fig, filename='weapon_type', auto_open=False)
     return p1
