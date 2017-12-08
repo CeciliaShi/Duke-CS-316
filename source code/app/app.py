@@ -14,8 +14,8 @@ from Ploty.victim_damage import victim_damage, base_query
 from Ploty.attack_info import attack_type, attack_info
 import Ploty.trend as trend
 from Ploty.victim_subtype import victim_subtype, query_subtype
-# import Ploty.google_trend as GT
-from Ploty.weighted_avg import search_map, gt_freq
+import Ploty.google_trend as GT
+# from Ploty.weighted_avg import search_map, gt_freq
 
 plotly.tools.set_credentials_file(username=conf.pp_conf["username"], api_key=conf.pp_conf["api_key"])
 
@@ -46,12 +46,12 @@ def world_map():
 #	victim = plot_victim(victim_type)
 
 	frequency = freq(fq, code)
-	trend_map = gt_freq(search_map, code)
+	#trend_map = gt_freq(search_map, code)
 	Trend = trend.trend(trend.base_query)
-	#Google_trend = GT.google_trend(GT.base_query)
+	Google_trend = GT.google_trend(GT.base_query)
 	return render_template("world-map.html", frequency = frequency, Trend = Trend, 
-		#Google_trend = Google_trend, 
-		trend_map = trend_map)
+		Google_trend = Google_trend) 
+		#trend_map = trend_map)
 #	return render_template("world-map.html", iframe = iframe, victim = victim)
 #	return render_template("world-map.html", victim = victim)
 

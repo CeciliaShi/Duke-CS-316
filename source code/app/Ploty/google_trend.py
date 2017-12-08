@@ -19,7 +19,8 @@ def google_trend(res):
         title='Google Trend',
         xaxis=dict(
             rangeslider=dict(),
-            type='date'))
+            type='date')
+        )
 
     fig = dict(data=data, layout=layout)
     p1 = py.plot(fig, filename='google trend by date', auto_open=False)
