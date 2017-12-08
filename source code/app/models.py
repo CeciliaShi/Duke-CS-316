@@ -79,7 +79,7 @@ class Comment(db.Model):
         name = db.Column("name",db.String(20), nullable = False)
         message = db.Column("message", db.String(200), nullable = False)
 
-class GoolgeTrend(db.Model):
+class GoogleTrend(db.Model):
         __tablename__ = "googletrend"
         date = db.Column("date", db.Date(), nullable = False, primary_key=True)
         terrorism = db.Column("terrorism",db.Integer(), nullable = False)
