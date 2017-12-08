@@ -46,7 +46,7 @@ def world_map():
 #	victim = plot_victim(victim_type)
 
 	frequency = freq(fq, code)
-	trend_map = gt_freq(search_map)
+	trend_map = gt_freq(search_map, code)
 	Trend = trend.trend(trend.base_query)
 	#Google_trend = GT.google_trend(GT.base_query)
 	return render_template("world-map.html", frequency = frequency, Trend = Trend, 
