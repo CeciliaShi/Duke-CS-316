@@ -6,14 +6,14 @@ import plotly.graph_objs as go
 base_query = (db.session.query(GoogleTrend.date, GoogleTrend.weighted_avg)).all()
 
 def google_trend(res):
-	trend_year = go.Scatter(
-		x = [v[0] for v in res],
+    trend_year = go.Scatter(
+	x = [v[0] for v in res],
     	y = [v[1] for v in res],
     	name = "trend",
     	line = dict(color = '#17BECF'),
     	opacity = 0.8)
 
-	data = [trend_year]
+    data = [trend_year]
 	
     layout = dict(
         title='Google Trend',
