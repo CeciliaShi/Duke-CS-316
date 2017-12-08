@@ -48,9 +48,10 @@ def world_map():
 	frequency = freq(fq, code)
 	trend_map = gt_freq(search_map)
 	Trend = trend.trend(trend.base_query)
-	Google_trend = GT.google_trend(GT.base_query)
+	#Google_trend = GT.google_trend(GT.base_query)
 	return render_template("world-map.html", frequency = frequency, Trend = Trend, 
-		Google_trend = Google_trend, trend_map = trend_map)
+		#Google_trend = Google_trend, 
+		trend_map = trend_map)
 #	return render_template("world-map.html", iframe = iframe, victim = victim)
 #	return render_template("world-map.html", victim = victim)
 
