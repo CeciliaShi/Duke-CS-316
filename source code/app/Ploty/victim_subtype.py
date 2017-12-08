@@ -27,7 +27,7 @@ def victim_subtype(res):
         values = [v[2] for v in res],
         textposition ="inside",
         domain = {"x": [.52, 1]},
-        name = "fatality",
+        name = "injury",
         hoverinfo="label+percent+name",
         hole= .4,
         type= "pie",
