@@ -13,10 +13,10 @@ import plotly
 
 
 
-attack_type = (db.session.query(Incident.international,Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
-               join(BelongedTo, Incident.id == BelongedTo.incident_id).all()) 
-
-attack_type =  pd.DataFrame(attack_type)
+#attack_type = (db.session.query(Incident.international,Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
+#               join(BelongedTo, Incident.id == BelongedTo.incident_id).all()) 
+#
+#attack_type =  pd.DataFrame(attack_type)
 
 def attack_info(df):
 
