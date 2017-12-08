@@ -6,3 +6,4 @@
 \COPY BelongedTo(incident_id, attack_type, succussful_attack, suicide_attack) FROM 'data/BelongedTo.csv' WITH DELIMITER ',' NULL '' CSV
 \COPY Targeted(incident_id, victim_type, subtype, target) FROM 'data/Targeted.csv' WITH DELIMITER ',' NULL '' CSV
 \COPY Comment(name, message) FROM 'data/Comment.csv' WITH DELIMITER ',' NULL '' CSV
+\COPY GoogleTrend(date, terrorism, terrorist_attack, terror_attack, terrorism_act, weighted_avg, year, month) FROM 'data/GoogleTrend.csv' WITH DELIMITER ',' NULL '' CSV

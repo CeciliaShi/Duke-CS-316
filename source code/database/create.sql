@@ -41,6 +41,17 @@ CREATE TABLE InitiatedBy
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
  );
 
+CREATE TABLE GoogleTrend
+(date DATE PRIMARY KEY,
+ terrorism INT NOT NULL CHECK(terrorism >=0 AND terrorism <=100),
+ terrorist_attack INT NOT NULL CHECK(terrorist_attack >=0 AND terrorist_attack <=100),
+ terror_attack INT NOT NULL CHECK(terror_attack >=0 AND terror_attack <=100),
+ terrorism_act INT NOT NULL CHECK(terrorism_act >=0 AND terrorism_act <=100),
+ weighted_avg NUMERIC NOT NULL CHECK(weighted_avg >=0 AND weighted_avg <=100),
+ year INT NOT NULL,
+ month INT NOT NULL CHECK(month >=1 AND month <= 12)
+);
+
 
 
 CREATE TABLE Used
