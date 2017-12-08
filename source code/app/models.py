@@ -78,3 +78,14 @@ class Comment(db.Model):
         user_id = db.Column("user_id", db.Sequence('user_id_seq'), nullable = False, primary_key=True)
         name = db.Column("name",db.String(20), nullable = False)
         message = db.Column("message", db.String(200), nullable = False)
+
+class GoolgeTrend(db.Model):
+        __tablename__ = "googletrend"
+        date = db.Column("date", db.Date(), nullable = False, primary_key=True)
+        terrorism = db.Column("terrorism",db.Integer(), nullable = False)
+        terrorist_attack = db.Column("terrorist_attack",db.Integer(), nullable = False)
+        terror_attack = db.Column("terror_attack",db.Integer(), nullable = False)
+        terrorism_act = db.Column("terrorism_act",db.Integer(), nullable = False)
+        weighted_avg = db.Column('weighted_avg', db.Numeric(), nullable = False)
+        year = db.Column('year', db.Integer(), nullable = False)
+        month = db.Column('month', db.Integer(), nullable = False)
