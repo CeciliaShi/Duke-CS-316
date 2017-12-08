@@ -14,7 +14,7 @@ from Ploty.victim_damage import victim_damage, base_query
 from Ploty.attack_info import attack_type, attack_info
 import Ploty.trend as trend
 from Ploty.victim_subtype import victim_subtype, query_subtype
-import Ploty.GoogleTrend as GT
+import Ploty.google_trend as GT
 from Ploty.weighted_avg import search_map, gt_freq
 
 plotly.tools.set_credentials_file(username=conf.pp_conf["username"], api_key=conf.pp_conf["api_key"])
