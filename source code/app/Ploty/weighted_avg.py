@@ -16,7 +16,7 @@ search_map = (db.session.query(GoogleTrend.year,GoogleTrend.month, GoogleTrend.w
 
 
 def gt_freq(df, code):
-    #df = pd.DataFrame(df)
+    df = pd.DataFrame(df).astype(float)
     df = df[['weighted_avg', 'country']]
     df = df.groupby(['country'], as_index=False).mean()
     df_kw = pd.merge(df, code, how='left', left_on='country', right_on='country_txt').drop(['country_txt','country'],axis=1)
