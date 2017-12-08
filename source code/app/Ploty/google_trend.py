@@ -24,3 +24,4 @@ def google_trend(res):
     fig = dict(data=data, layout=layout)
     p1 = py.plot(fig, filename='google trend by date', auto_open=False)
     return(p1)
+
