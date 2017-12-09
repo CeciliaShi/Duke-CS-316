@@ -52,3 +52,12 @@ $(document).ready(function() {
 		nav.toggleClass('open');
 	});
 });
+
+$(function() {
+  if (!$.fn.bootstrapDP && $.fn.daterangepicker && $.fn.daterangepicker.noConflict) {
+    var daterangepicker = $.fn.daterangepicker.noConflict();
+    $.fn.bootstrapDP = daterangepicker;
+  }
+  $("#jquery-ui-daterangepicker").daterangepicker({});
+  $('#bootstrap-daterangepicker').bootstrapDP({});
+});
