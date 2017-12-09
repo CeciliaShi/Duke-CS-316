@@ -521,7 +521,7 @@ ul li {
 }
 .work-detail-margin {
 	margin-top: 7%;
-	height: 367px;
+	height: 450px;
 }
 .detail-image img {
 	width: 100%;
@@ -530,6 +530,19 @@ ul li {
 	background-color: #f2f2f2;
 	padding: 3%;
 	margin-top: 7%;
+	height: 367px;
+}
+.detail-contentboxa {
+	background-color: #f2f2f2;
+	padding: 3%;
+	margin-top: 7%;
+	height: 350px;
+}
+.detail-contentboxb {
+	background-color: #f2f2f2;
+	padding: 3%;
+	margin-top: 7%;
+	height: 250px;
 }
 .detail-content h4 {
 	font-size: 27px;
