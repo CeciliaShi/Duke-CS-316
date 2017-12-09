@@ -5,21 +5,21 @@ def trend(res):
 	trace_high = go.Scatter(
 		x=[v[0] for v in res],
 		y=[v[1] for v in res],
-		name = "fatality",
+		name = "Fatalities",
 		line = dict(color = '#17BECF'),
 		opacity = 0.8)
 
 	trace_low = go.Scatter(
 		x=[v[0] for v in res],
 		y=[v[2] for v in res],
-		name = "injury",
+		name = "Injuries",
 		line = dict(color = '#7F7F7F'),
 		opacity = 0.8)
 
 	data = [trace_high, trace_low]
 
 	layout = dict(
-		title='Fatality and Injury by Year',
+		title='Fatalities and Injuries by Year',
 		xaxis=dict(
 			rangeslider=dict(),
 			type='date'

@@ -49,7 +49,7 @@ def attack_info(df):
     
         data = [trace1, trace2]
         layout = go.Layout(
-            title = 'Attack Distributions in Percentage',
+            title = 'Attack Distribution in Percentage',
             barmode='group'
         )
     

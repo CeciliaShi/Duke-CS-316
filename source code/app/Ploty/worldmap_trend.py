@@ -35,7 +35,7 @@ def gt_freq(df, code):
       ) ]
 
     layout = dict(
-    title = 'Google Trend of Terrorism Frequency:2004-2017',
+    title = 'Public Attention',
     geo = dict(
         showframe = False,
         showcoastlines = False,
