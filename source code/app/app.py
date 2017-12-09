@@ -48,8 +48,6 @@ def world_map():
 
 	frequency = freq(fq, code)
 	trend_map = gt_freq(search_map, code)
-	Trend = trend.trend(trend.base_query)
-	Google_trend = GT.google_trend(GT.base_query)
 	return render_template("world-map.html", frequency = frequency, trend_map = trend_map)
 		#Trend = Trend, Google_trend = Google_trend)
 		#trend_map = trend_map)
@@ -70,6 +68,12 @@ def attackType():
 	attack_type =  pd.DataFrame(attack_type)
 	Attack = attack_info(attack_type)
 	return render_template("attack-type.html", Attack = Attack)
+
+@app.route('/trend/')
+def trends():
+	Trend = trend.trend(trend.base_query)
+	Google_trend = GT.google_trend(GT.base_query)
+	return render_template("trend.html", Trend = Trend, Google_trend = Google_trend)
 
 @app.route('/victim-type/')
 def victimType():
