@@ -19,6 +19,8 @@ import plotly
 #attack_type =  pd.DataFrame(attack_type)
 
 def attack_info(df):
+    print('Hello!')
+    print(df.shape)
     df.head()
     intn_y = round(float(np.float64(((df['international'] == 1).sum()/(df['international'] != -9).sum())*100)),2)
     prop_y = round(float(np.float64(((df['property_damage'] == 1).sum()/(df['property_damage'] != -9).sum())*100)),2)
