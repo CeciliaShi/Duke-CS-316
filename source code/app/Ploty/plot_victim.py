@@ -73,6 +73,7 @@ def plot_victim_subtype(res):
     data = [nkill, nwound]
     layout = go.Layout(
         legend = dict(font=dict(size=10)),
+        showlegend=False,
         title="Subtypes within Private Citizens & Property",
         annotations= [
         dict(
