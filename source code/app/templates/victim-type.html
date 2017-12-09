@@ -65,13 +65,13 @@ $(function() {
       <div class="col-md-3 work-detail-margin detail-contentboxa">
         <div class="detail-content">
           <form method = "POST">
-            <h4> Countries </h4>
+            <h4> Select Country </h4>
               <select name="country" class="selectpicker" style="margin:0px auto; display:block;">
                 {% for c in countries:%}
                   <option value="{{c[0]}}">{{c[0]}}</option>
                 {% endfor %}  
               </select>
-            <h4> Graph Type </h4>
+            <h4> Select Graph Type </h4>
             <select name="graph_type" class="selectpicker" style="margin:0px auto; display:block;">
                 <option value="0">Frequency</option> 
                 <option value="1">Fatalities and Injuries</option> 
