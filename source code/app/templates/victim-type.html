@@ -55,16 +55,15 @@ $(function() {
 <section id="work-detail" class="section work-detail">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 work-detail-margin detail-image">
+      <div class="col-md-9 work-detail-margin detail-image">
         <div class="work-image">
           <p><div>
-            <iframe id="igraph" style="border:none" src="{{Victim}}" width="100%" height="700"></iframe>
-            <iframe id="igraph" style="border:none" src="{{Victim_Subtype}}" width="100%" height="700"></iframe>        
+            <iframe id="igraph" style="border:none" src="{{Victim}}" width="100%" height="700"></iframe>   
             </div> 
           </p>
         </div>
       </div>
-      <div class="col-md-4 work-detail-margin detail-contentbox">
+      <div class="col-md-3 work-detail-margin detail-contentboxa">
         <div class="detail-content">
           <form method = "POST">
             <h4> Countries </h4>
@@ -82,7 +81,17 @@ $(function() {
          </form> 
         </div>
       </div>
-      <div class="col-md-4 work-detail-margin detail-contentbox">
+    </div>
+    <div class="row">
+      <div class="col-md-9 work-detail-margin detail-image">
+        <div class="work-image">
+          <p><div>
+            <iframe id="igraph" style="border:none" src="{{Victim_Subtype}}" width="100%" height="700"></iframe>        
+            </div> 
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3 work-detail-margin detail-contentboxb">
         <div class="detail-content">
           <form method = "POST">
             <h4> Select Victim Type </h4>
