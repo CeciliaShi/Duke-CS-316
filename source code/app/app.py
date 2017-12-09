@@ -100,7 +100,7 @@ def victimType():
 			.order_by(func.sum(Incident.nkill))).all()
 		plot_victim = plot_victim_fatality(victim_fatality)
 	
-	if victim_type is None | victim_type == "Private Citizens & Property":
+	if victim_type is None:
 		victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
 			.filter(Targeted.victim_type=="Private Citizens & Property")
 			.join(Targeted.incident)
