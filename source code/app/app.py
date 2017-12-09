@@ -1,3 +1,5 @@
+from models import *
+from sqlalchemy import func, and_
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import models
@@ -9,7 +11,7 @@ from Ploty.kw import kill_wound
 from Ploty.freq import freq
 from Ploty.plot_victim import plot_victim, victim_type
 from Ploty.query_freq import freq, fq
-from Ploty.query_weapon_type import weapon, weapon_type
+from Ploty.weapon_type import weapon
 from Ploty.victim_damage import victim_damage, base_query
 #from Ploty.attack_info import attack_type, attack_info
 from Ploty.attack_info import attack_info
@@ -83,12 +85,29 @@ def victimType():
 	Victim3 = victim_subtype(query_subtype)
 	return render_template("victim-type.html", Victim = Victim, Victim2 = Victim2, Victim3 = Victim3)
 
-@app.route('/weapon-type/')
+@app.route('/weapon-type/', methods = ['GET', 'POST'])
 def weaponType():
+        country = request.form.get("country")  
+        if country is None:
+        	weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
+        		.join(Incident,Incident.id == Used.incident_id)
+      			.group_by(Used.weapon_type)
+     			.order_by(func.count(Used.incident_id).desc())).all()
 
-	Weapon = weapon(weapon_type)
-	return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
-#	return render_template("weapon-type.html")
+        else:
+        	weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
+        		.join(Incident,Incident.id == Used.incident_id)
+        		.join(Happened,Happened.incident_id == Incident.id)
+                        .join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))
+                        .filter(Location.country == country)
+      			.group_by(Used.weapon_type)
+     			.order_by(func.count(Used.incident_id).desc())).all()
+
+        weapon_type = pd.DataFrame(weapon_type)
+
+        Weapon = weapon(weapon_type)
+        return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
+#       return render_template("weapon-type.html")
 
 @app.route('/comments/')
 def comments():
