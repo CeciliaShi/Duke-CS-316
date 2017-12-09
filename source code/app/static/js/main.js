@@ -53,11 +53,7 @@ $(document).ready(function() {
 	});
 });
 
-$(function() {
-  if (!$.fn.bootstrapDP && $.fn.daterangepicker && $.fn.daterangepicker.noConflict) {
-    var daterangepicker = $.fn.daterangepicker.noConflict();
-    $.fn.bootstrapDP = daterangepicker;
-  }
-  $("#jquery-ui-daterangepicker").daterangepicker({});
-  $('#bootstrap-daterangepicker').bootstrapDP({});
+$('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
 });
