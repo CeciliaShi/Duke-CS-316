@@ -83,33 +83,70 @@ def trends():
 
 @app.route('/victim-type/', methods = ['GET', 'POST'])
 def victimType():
-	victim_types = db.session.query(Targeted.victim_type).distinct(Targeted.victim_type).all()
+	victim_types = db.session.query(Targeted.victim_type).distinct(Targeted.victim_type).all()	
 	country = request.form.get("country")
 	graph_type = request.form.get("graph_type")
 	victim_type = request.form.get("victim_type")
-	victim_frequency = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()
+
+	if country is None:
+		victim_frequency_all = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()	
+	else:
+		victim_frequency_country = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).join(Happened,Happened.incident_id == Targeted.incident_id).join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude)).filter(Location.country == country).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()
+
 
 	if graph_type is None:
-		plot_victim = plot_victim_frequency(victim_frequency)
+		if country is None:
+			plot_victim = plot_victim_frequency(victim_frequency_all)
+		else:
+			plot_victim = plot_victim_frequency(victim_frequency_country)
 	elif graph_type == "0":
-		plot_victim = plot_victim_frequency(victim_frequency)
+		if country is None:
+			plot_victim = plot_victim_frequency(victim_frequency_all)
+		else:
+			plot_victim = plot_victim_frequency(victim_frequency_country)		
 	else:
-		victim_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
-			.join(Targeted.incident)
-			.group_by(Targeted.victim_type)
-			.order_by(func.sum(Incident.nkill))).all()
-		plot_victim = plot_victim_fatality(victim_fatality)
+		if country is None:
+			victim_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
+				.join(Targeted.incident)
+				.group_by(Targeted.victim_type)
+				.order_by(func.sum(Incident.nkill))).all()
+		else:
+			victim_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
+				.join(Targeted.incident).join(Happened,Happened.incident_id == Targeted.incident_id)
+	            .join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))
+	            .filter(Location.country==country)
+	            .group_by(Targeted.victim_type)
+	            .order_by(func.sum(Incident.nkill))).all()
+	    plot_victim = plot_victim_fatality(victim_fatality)
 	
 	if victim_type is None:
-		victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
-			.filter(Targeted.victim_type=="Private Citizens & Property")
-			.join(Targeted.incident)
-			.group_by(Targeted.subtype)).all()
+		if country is None:
+			victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
+				.filter(Targeted.victim_type=="Private Citizens & Property")
+			    .join(Targeted.incident)
+			    .group_by(Targeted.subtype)).all()
+		else:
+			victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
+				.filter(Targeted.victim_type=="Private Citizens & Property")
+   			    .join(Happened,Happened.incident_id == Targeted.incident_id)
+		        .join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))
+		        .filter(Location.country==country)			
+			    .join(Targeted.incident)
+			    .group_by(Targeted.subtype)).all()			
 	else:
-		victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
-			.filter(Targeted.victim_type==victim_type)
-			.join(Targeted.incident)
-			.group_by(Targeted.subtype)).all()
+		if country is None:
+			victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
+				.filter(Targeted.victim_type==victim_type)
+				.join(Targeted.incident)
+				.group_by(Targeted.subtype)).all()			
+		else:
+			victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
+				.filter(Targeted.victim_type==victim_type)
+		    	.join(Happened,Happened.incident_id == Targeted.incident_id)
+	        	.join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))
+	        	.filter(Location.country==country)
+				.join(Targeted.incident)
+				.group_by(Targeted.subtype)).all()
 	
 	plot_subtype = plot_victim_subtype(victim_subtype)		   	
 	return render_template("victim-type.html", Victim = plot_victim, Victim_Subtype = plot_subtype, countries = countries, Victim_types = victim_types)
