@@ -16,8 +16,9 @@ from Ploty.weapon_type import weapon
 from Ploty.attack_info import attack_info
 import Ploty.trend as trend
 import Ploty.google_trend as GT
+import pickle
 
-
+cache = pickle.load(open("cache.pickle","rb"))
 plotly.tools.set_credentials_file(username=conf.pp_conf["username"], api_key=conf.pp_conf["api_key"])
 
 app = Flask(__name__)
@@ -38,22 +39,25 @@ def visual():
 def world_map():
 	code = pd.read_csv("Ploty/code_correct.csv")
 	map_type = request.form.get("map_type")  
-	search_map = (db.session.query(GoogleTrend.year,GoogleTrend.month, GoogleTrend.weighted_avg, Location.country).
-		filter(Incident.date.isnot(None)).
-		join(Incident,and_(GoogleTrend.year == extract('year', Incident.date),GoogleTrend.month == extract('month', Incident.date))).
-		join(Happened,Happened.incident_id == Incident.id).
-		join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))).all()
+	#search_map = (db.session.query(GoogleTrend.year,GoogleTrend.month, GoogleTrend.weighted_avg, Location.country).
+	#	filter(Incident.date.isnot(None)).
+	#	join(Incident,and_(GoogleTrend.year == extract('year', Incident.date),GoogleTrend.month == extract('month', Incident.date))).
+	#	join(Happened,Happened.incident_id == Incident.id).
+	#	join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))).all()
+	#
+	#search_map = pd.DataFrame(search_map)
 
-	search_map = pd.DataFrame(search_map)
+	#trend_map = gt_freq(search_map, code)
 
-	trend_map = gt_freq(search_map, code)
+	trend_map = cache["tm"]
 
 	
 	if map_type is None:
-		query_fq = (db.session.query(Location.country).
-			join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
-		query_fq = pd.DataFrame(query_fq)
-		frequency= freq(query_fq,code)
+		#query_fq = (db.session.query(Location.country).
+		#	join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
+		#query_fq = pd.DataFrame(query_fq)
+		#frequency= freq(query_fq,code)
+		frequency = cache["frequency"]
 	elif map_type == "0":
 		query_fq = (db.session.query(Location.country).
 			join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
@@ -73,8 +77,11 @@ def world_map():
 def attackType():
 	attack_country = request.form.get("type")
 	if attack_country is None:
-		attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
-			   join(BelongedTo, Incident.id == BelongedTo.incident_id).all()) 
+		#attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
+		#	   join(BelongedTo, Incident.id == BelongedTo.incident_id).all())
+		#attack_type =  pd.DataFrame(attack_type)
+		Attack = cache['Attack']
+		return render_template("attack-type.html", Attack = Attack, countries = countries)
 	else:
 		attack_type = int(attack_type)
 		attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
@@ -82,9 +89,9 @@ def attackType():
 		join(Happened,Happened.incident_id == Incident.id).
 		join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude)).
 		filter(Location.country == attack_country).all()) 
-	attack_type =  pd.DataFrame(attack_type)
-	Attack = attack_info(attack_type)
-	return render_template("attack-type.html", Attack = Attack, countries = countries)
+		attack_type =  pd.DataFrame(attack_type)
+		Attack = attack_info(attack_type)
+		return render_template("attack-type.html", Attack = Attack, countries = countries)
 
 @app.route('/trend/', methods = ['GET', 'POST'])
 def trends():
@@ -94,7 +101,8 @@ def trends():
 		filter(Incident.date.isnot(None)).group_by(extract('year', Incident.date)).
 		order_by(extract('year',Incident.date))).all()
 	if trend_type is None:
-		trend_plot = trend.trend(base_query)
+		#trend_plot = trend.trend(base_query)
+		trend_plot = cache["trend"]
 	elif trend_type == "0":
 		trend_plot = trend.trend(base_query)
 	else:
@@ -110,6 +118,11 @@ def victimType():
 	country = request.form.get("country")
 	graph_type = request.form.get("graph_type")
 	victim_type = request.form.get("victim_type")
+
+	if country is None and graph_type is None:
+		plot_victim = cache["plot_victim"]
+		plot_subtype = cache["plot_subtype"]
+		return render_template("victim-type.html", Victim = plot_victim, Victim_Subtype = plot_subtype, countries = countries, Victim_types = victim_types)
 
 	if country is None:
 		victim_frequency_all = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()  
@@ -178,11 +191,12 @@ def victimType():
 def weaponType():
 		country = request.form.get("country")  
 		if country is None:
-			weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
-				.join(Incident,Incident.id == Used.incident_id)
-				.group_by(Used.weapon_type)
-				.order_by(func.count(Used.incident_id).desc())).all()
-
+			#weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
+			#	.join(Incident,Incident.id == Used.incident_id)
+			#	.group_by(Used.weapon_type)
+			#	.order_by(func.count(Used.incident_id).desc())).all()
+			Weapon = cache["Weapon"]
+			return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
 		else:
 			weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
 				.join(Incident,Incident.id == Used.incident_id)
@@ -192,10 +206,10 @@ def weaponType():
 				.group_by(Used.weapon_type)
 				.order_by(func.count(Used.incident_id).desc())).all()
 
-		weapon_type = pd.DataFrame(weapon_type)
+			weapon_type = pd.DataFrame(weapon_type)
 
-		Weapon = weapon(weapon_type)
-		return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
+			Weapon = weapon(weapon_type)
+			return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
 #       return render_template("weapon-type.html")
 
 #@app.route('/comments/')
