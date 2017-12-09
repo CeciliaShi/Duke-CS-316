@@ -92,7 +92,7 @@ def victimType():
 	if graph_type is None:
 		plot_victim = plot_victim_frequency(victim_frequency)
 	elif graph_type == "0":
-        plot_victim = plot_victim_frequency(victim_frequency)
+		plot_victim = plot_victim_frequency(victim_frequency)
 	else:
 		victim_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
 			.join(Targeted.incident)
