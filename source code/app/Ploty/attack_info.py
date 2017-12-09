@@ -23,7 +23,7 @@ def attack_info(df):
     print(df.shape)
     df.head()
     if df.shape[0] == 0:
-        plot_url = "https://plot.ly/~xingyu/6/550/550"
+        plot_url = "https://plot.ly/~xingyu/16"
     else:
         intn_y = round(float(np.float64(((df['international'] == 1).sum()/(df['international'] != -9).sum())*100)),2)
         prop_y = round(float(np.float64(((df['property_damage'] == 1).sum()/(df['property_damage'] != -9).sum())*100)),2)
