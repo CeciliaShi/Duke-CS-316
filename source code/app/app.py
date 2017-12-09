@@ -57,7 +57,7 @@ def world_map():
 #	return render_template("world-map.html", victim = victim)
 
 
-@app.route('/attack-type/', methods = ['POST'])
+@app.route('/attack-type/', methods = ['GET'])
 def attackType():
 	a = request.form["type"]
 	attack_type = (db.session.query(Incident.international,Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).

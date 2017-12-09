@@ -69,10 +69,12 @@ $(function() {
           <h4 >Date Range </h4>
           <input style="margin:0px auto; display:block;" name="daterange" value="01/01/1970 - 12/31/2016" >
           <h4> Intensity Measurement </h4>
-          <select name="type" id="type" class="selectpicker" style="margin:0px auto; display:block;">
-            <option value = "1">Suicide</option>
-            <option value = "0">Not Suicide</option>
-          </select>
+          <form method = "get">
+            <select name="type" id="type" class="selectpicker" style="margin:0px auto; display:block;">
+              <option value = "1">Suicide</option>
+              <option value = "0">Not Suicide</option>
+            </select>
+          </form>
           <button class="btn btn-primary" type="botton">Generate Plot</button>
         </div>
         </form>
