@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
 pp_conf = {
-	"username" : "xingyu",
-	"api_key" : "IhgsIHzt05BzLLvYWKtJ" 
+	"username" : "hs220",
+	"api_key" : "yls1USILq5CUqBTWsnGI" 
 }
