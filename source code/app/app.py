@@ -78,12 +78,12 @@ def trends():
 	Google_trend = GT.google_trend(GT.base_query)
 	return render_template("trend.html", Trend = Trend, Google_trend = Google_trend)
 
-@app.route('/victim-type/')
+@app.route('/victim-type/', methods = ['GET', 'POST'])
 def victimType():
 	Victim = victim_damage(base_query)
 	Victim2 = plot_victim(victim_type)
 	Victim3 = victim_subtype(query_subtype)
-	return render_template("victim-type.html", Victim = Victim, Victim2 = Victim2, Victim3 = Victim3)
+	return render_template("victim-type.html", Victim = Victim, Victim2 = Victim2, Victim3 = Victim3, countries = countries)
 
 @app.route('/weapon-type/', methods = ['GET', 'POST'])
 def weaponType():
