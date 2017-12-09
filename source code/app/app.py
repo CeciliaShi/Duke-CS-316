@@ -77,9 +77,9 @@ def attackType():
 def trends():
 	# Trend = trend.trend(trend.base_query)
 	Google_trend = GT.google_trend(GT.base_query)
-	Victim = victim_damage(base_query)
-	#return render_template("trend.html", Trend = Trend, Google_trend = Google_trend)
-	return render_template("trend.html", Google_trend = Google_trend, Victim = Victim)
+	Trend = trend.trend(trend.base_query)
+	return render_template("trend.html", Trend = Trend, Google_trend = Google_trend)
+	#return render_template("trend.html", Google_trend = Google_trend, Victim = Victim)
 
 @app.route('/victim-type/', methods = ['GET', 'POST'])
 def victimType():
