@@ -87,16 +87,18 @@ def victimType():
 	country = request.form.get("country")
 	graph_type = request.form.get("graph_type")
 	victim_type = request.form.get("victim_type")
+	victim_frequency = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()
 
-	if graph_type is None | graph_type == "0":
-		victim_frequency = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()
+	if graph_type is None:
 		plot_victim = plot_victim_frequency(victim_frequency)
+	elif graph_type == "0":
+        plot_victim = plot_victim_frequency(victim_frequency)
 	else:
-		victime_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
+		victim_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
 			.join(Targeted.incident)
 			.group_by(Targeted.victim_type)
 			.order_by(func.sum(Incident.nkill))).all()
-		plot_victim = plot_victim_fatality(victime_fatality)
+		plot_victim = plot_victim_fatality(victim_fatality)
 	
 	if victim_type is None | victim_type == "Private Citizens & Property":
 		victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
@@ -110,7 +112,7 @@ def victimType():
 			.group_by(Targeted.subtype)).all()
 	
 	plot_subtype = plot_victim_subtype(victim_subtype)		   	
-	return render_template("victim-type.html", Victim = plot_victim, Victim_Subtype = plot_subtype, countries = countries, Victime_types = victim_types)
+	return render_template("victim-type.html", Victim = plot_victim, Victim_Subtype = plot_subtype, countries = countries, Victim_types = victim_types)
 
 @app.route('/weapon-type/', methods = ['GET', 'POST'])
 def weaponType():
