@@ -57,27 +57,46 @@ $(function() {
     <div class="row">
       <div class="col-md-12 work-detail-margin detail-image">
         <div class="work-image">
-        <p><div>
-        <iframe id="igraph" style="border:none" src="{{Victim2}}" width="100%" height="700"></iframe>              
-        <iframe id="igraph" style="border:none" src="{{Victim}}" width="100%" height="700"></iframe>
-        <iframe id="igraph" style="border:none" src="{{Victim3}}" width="100%" height="700"></iframe>        
-
-        </div> </p>
+          <p><div>
+            <iframe id="igraph" style="border:none" src="{{Victim}}" width="100%" height="700"></iframe>
+            <iframe id="igraph" style="border:none" src="{{Victim_Subtype}}" width="100%" height="700"></iframe>        
+            </div> 
+          </p>
         </div>
       </div>
       <div class="col-md-4 work-detail-margin detail-contentbox">
         <div class="detail-content">
-        <form method = "POST">
-          <h4> Countries </h4>
-          <select name="country" class="selectpicker" style="margin:0px auto; display:block;">
-          {% for c in countries:%}
-              <option value="{{c[0]}}">{{c[0]}}</option>
-          {% endfor %}  
-          </select>
-          <button class="btn btn-primary" type="botton">Generate Plot</button>
+          <form method = "POST">
+            <h4> Countries </h4>
+              <select name="country" class="selectpicker" style="margin:0px auto; display:block;">
+                {% for c in countries:%}
+                  <option value="{{c[0]}}">{{c[0]}}</option>
+                {% endfor %}  
+              </select>
+            <h4> Graph Type </h4>
+            <select name="graph_type" class="selectpicker" style="margin:0px auto; display:block;">
+                <option value="0">Frequency</option> 
+                <option value="1">Fatalities and Injuries</option> 
+            </select>
+            <button class="btn btn-primary" type="botton">Generate Plot</button>
          </form> 
         </div>
-  </div>
+      </div>
+      <div class="col-md-4 work-detail-margin detail-contentbox">
+        <div class="detail-content">
+          <form method = "POST">
+            <h4> Select Victim Type </h4>
+              <select name="victim_type" class="selectpicker" style="margin:0px auto; display:block;">
+                {% for victim_type in Victime_types:%}
+                  <option value="{{victim_type[0]}}">{{victim_type[0]}}</option>
+                {% endfor %} 
+              </select>
+            <button class="btn btn-primary" type="botton">Generate Plot</button>
+         </form> 
+        </div>
+      </div>
+    </div>
+  </div>    
 </section>
 
 <!-- work details section --> 
