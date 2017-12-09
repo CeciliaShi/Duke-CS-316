@@ -36,7 +36,7 @@ def kill_wound(df, code):
     		]
 
     layout = dict(
-    	title = '45 Years of Terrorism:1970-2015',
+    	title = 'Terrorism Worldwide',
     	geo = dict(
     		showframe = False,
     		showcoastlines = False,
