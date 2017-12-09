@@ -37,7 +37,7 @@ def plot_victim_fatality(res):
         )
 
     data = [nkill, nwound]
-    layout = go.Layout(title = "Fatality and Injury by Victim Type",
+    layout = go.Layout(title = "Fatalities and Injuries by Victim Type",
         autosize=False,
         width=1000,
         height=600,
@@ -74,14 +74,14 @@ def plot_victim_subtype(res):
     layout = go.Layout(
         legend = dict(font=dict(size=10)),
         showlegend=False,
-        title="Subtypes within Private Citizens & Property",
+        title="Fatalities and Injuries by Victim Subtypes",
         annotations= [
         dict(
             font= dict(
                 size= 15
                 ),
             showarrow= False,
-            text= "fatality",
+            text= "Fatalities",
             x= 0.195,
             y= 0.5
             ),
@@ -90,7 +90,7 @@ def plot_victim_subtype(res):
                 size= 15
                 ),
             showarrow= False,
-            text= "injury",
+            text= "Injuries",
             x= 0.805,
             y= 0.5
             )
