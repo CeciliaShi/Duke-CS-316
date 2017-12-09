@@ -38,8 +38,6 @@ def visual():
 @app.route('/world-map/',methods = ['GET', 'POST'])
 def world_map():
 	trend_map = cache["tm"]
-	import pdb
-	pdb.set_trace()
 	if request.method == "GET":
 		frequency = cache["frequency"]
 		return render_template("world-map.html", overall_map = frequency, trend_map = trend_map)
@@ -48,7 +46,6 @@ def world_map():
 	map_type = request.form.get("map_type")
 	startDate = request.form.get("startDate")
 	endDate = request.form.get("endDate")
-	pdb.set_trace()
 	#search_map = (db.session.query(GoogleTrend.year,GoogleTrend.month, GoogleTrend.weighted_avg, Location.country).
 	#	filter(Incident.date.isnot(None)).
 	#	join(Incident,and_(GoogleTrend.year == extract('year', Incident.date),GoogleTrend.month == extract('month', Incident.date))).
