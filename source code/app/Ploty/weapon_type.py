@@ -1,34 +1,30 @@
-
-#! python -c "import plotly; plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')"
-
-from models import *
-from sqlalchemy import func
+import plotly.graph_objs as go
 import plotly.plotly as py
-import plotly.graph_objs as go 
-import pandas as pd
-
-#weapon_type = db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type).group_by(Used.weapon_type).order_by(func.count(Used.incident_id).desc()).all()
 
 def weapon(df):
-    df=pd.DataFrame(df)
-    x = df['weapon_type'].tolist()
-    y = df['count'].tolist()
-    data = [go.Bar(
-            x=y,
-            y=x,
-            text=y,
-            textposition = 'auto',
-            marker=dict(
-                color='rgb(158,202,225)',
-                line=dict(
-                    color='rgb(8,48,107)',
-                    width=1.5),
-            ),
-            opacity=0.6,
-            orientation = 'h')]
     
-    layout = go.Layout(title='Weapon Type Frequency')
+    trace1 = go.Bar(
+    x=df['weapon_type'].tolist(),
+    y=df['count'].tolist(),
+    name='Frequency',
+    marker = dict(color = '#1883B2',),
+    opacity = 0.8
+    )
+        
+    trace2 = go.Bar(
+    x=df['weapon_type'].tolist(),
+    y=df['fatality'].tolist(),
+    name='Fatalities and Injuries',
+    marker = dict(color = '#A4E3FF',),
+    opacity = 0.8
+    )
+    
+    data = [trace2,trace1]
+    layout = go.Layout(
+            xaxis = dict(tickangle = 45),
+            title = 'Frequency/Fatalities and Injuries by Weapon Type',
+            barmode='group',)
+    
     fig = go.Figure(data=data, layout=layout)
     p1 = py.plot(fig, filename='weapon_type', auto_open=False)
     return p1
-
