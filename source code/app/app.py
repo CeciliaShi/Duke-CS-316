@@ -9,14 +9,12 @@ import plotly_conf as conf
 ## local scripts
 from Ploty.kw import kill_wound
 from Ploty.freq import freq
-from Ploty.plot_victim import plot_victim, victim_type
+from Ploty.plot_victim import *
 from Ploty.query_freq import freq, fq
 from Ploty.weapon_type import weapon
-from Ploty.victim_damage import victim_damage, base_query
 #from Ploty.attack_info import attack_type, attack_info
 from Ploty.attack_info import attack_info
 import Ploty.trend as trend
-from Ploty.victim_subtype import victim_subtype, query_subtype
 import Ploty.google_trend as GT
 from Ploty.weighted_avg import search_map, gt_freq
 
