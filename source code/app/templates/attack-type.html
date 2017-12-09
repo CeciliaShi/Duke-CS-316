@@ -76,16 +76,11 @@ $(function() {
             </select> -->
           <form method = "POST">
           <h4> Countries </h4>
-          <select name="country" class="selectpicker" style="margin:0px auto; display:block;">
+          <select name="attack_country" class="selectpicker" style="margin:0px auto; display:block;">
           {% for c in countries:%}
               <option value="{{c[0]}}">{{c[0]}}</option>
-          {% endfor %}  
-          </select>
-          <h4> Intensity Measurement </h4>
-          <form method = "POST">
-            <select name="type" class="selectpicker" style="margin:0px auto; display:block;">
-              <option value = "1">Suicide</option>
-              <option value = "0">Not Suicide</option>          
+          {% endfor %} 
+          </select>        
             <button class="btn btn-primary" type="botton">Generate Plot</button>
           </form>
         </div>
@@ -114,3 +109,4 @@ $(function() {
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </body>
 </html>
+

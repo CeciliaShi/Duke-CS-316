@@ -60,23 +60,28 @@ def world_map():
 
 @app.route('/attack-type/', methods = ['GET', 'POST'])
 def attackType():
-	a = request.form.get("type")
-	if a is None or a == "":
-		attack_type = (db.session.query(models.Incident.international, models.Incident.property_damage, models.BelongedTo.suicide_attack, models.BelongedTo.succussful_attack).
-               join(models.BelongedTo, models.Incident.id == models.BelongedTo.incident_id).all()) 
+	attack_country = request.form.get("type")
+	if attack_country is None:
+		attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
+               join(BelongedTo, Incident.id == BelongedTo.incident_id).all()) 
 	else:
-		a = int(a)
-		attack_type = (db.session.query(models.Incident.international, models.Incident.property_damage, models.BelongedTo.suicide_attack, models.BelongedTo.succussful_attack).
-               join(models.BelongedTo, models.Incident.id == models.BelongedTo.incident_id).filter(models.BelongedTo.suicide_attack == a).all()) 
+		attack_type = int(attack_type)
+		attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
+		join(BelongedTo, Incident.id == BelongedTo.incident_id).join(Incident,Incident.id == Used.incident_id).
+		join(Happened,Happened.incident_id == Incident.id).
+		join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude)).
+		filter(Location.country == attack_country).all()) 
 	attack_type =  pd.DataFrame(attack_type)
 	Attack = attack_info(attack_type)
-	return render_template("attack-type.html", Attack = Attack)
+	return render_template("attack-type.html", Attack = Attack, countries = countries)
 
 @app.route('/trend/')
 def trends():
-	Trend = trend.trend(trend.base_query)
+	# Trend = trend.trend(trend.base_query)
 	Google_trend = GT.google_trend(GT.base_query)
-	return render_template("trend.html", Trend = Trend, Google_trend = Google_trend)
+	Victim = victim_damage(base_query)
+	#return render_template("trend.html", Trend = Trend, Google_trend = Google_trend)
+	return render_template("trend.html", Google_trend = Google_trend, Victim = Victim)
 
 @app.route('/victim-type/', methods = ['GET', 'POST'])
 def victimType():
