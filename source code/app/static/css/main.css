@@ -544,6 +544,12 @@ ul li {
 	margin-top: 7%;
 	height: 250px;
 }
+.detail-contentboxc {
+	background-color: #f2f2f2;
+	padding: 3%;
+	margin-top: 7%;
+	height: 400px;
+}
 .detail-content h4 {
 	font-size: 27px;
 	line-height: 27px;
