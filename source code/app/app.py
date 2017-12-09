@@ -57,11 +57,14 @@ def world_map():
 #	return render_template("world-map.html", victim = victim)
 
 
-@app.route('/attack-type/', methods = ['POST'])
+@app.route('/attack-type/', methods = ['GET', 'POST'])
 def attackType():
-	a = request.form["type"]
-	a = int(a)
-	attack_type = (db.session.query(models.Incident.international, models.Incident.property_damage, models.BelongedTo.suicide_attack, models.BelongedTo.succussful_attack).
+	a = request.form.get("type")
+	if a is None or a == "":
+		attack_type = (db.session.query(models.Incident.international, models.Incident.property_damage, models.BelongedTo.suicide_attack, models.BelongedTo.succussful_attack).
+               join(models.BelongedTo, models.Incident.id == models.BelongedTo.incident_id).all()) 
+	else:
+		attack_type = (db.session.query(models.Incident.international, models.Incident.property_damage, models.BelongedTo.suicide_attack, models.BelongedTo.succussful_attack).
                join(models.BelongedTo, models.Incident.id == models.BelongedTo.incident_id).filter(models.BelongedTo.suicide_attack == a).all()) 
 	attack_type =  pd.DataFrame(attack_type)
 	Attack = attack_info(attack_type)
