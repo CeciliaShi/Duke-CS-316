@@ -64,18 +64,17 @@ $(function() {
         </div>
       </div>
       <div class="col-md-4 work-detail-margin detail-contentbox">
-        <form class="form-signin"  role="form">
         <div class="detail-content">
-          <h4 >Date Range </h4>
-          <input style="margin:0px auto; display:block;" name="daterange" value="01/01/1970 - 12/31/2016" >
-          <h4> Intensity Measurement </h4>
-          <select name="type" id="type" class="selectpicker" style="margin:0px auto; display:block;">
-            <option>Event Frequency</option>
-            <option>Fatalities and injuries</option>
+        <form method = "POST">
+          <h4> Countries </h4>
+          <select name="country" class="selectpicker" style="margin:0px auto; display:block;">
+          {% for c in countries:%}
+              <option value="{{c[0]}}">{{c[0]}}</option>
+          {% endfor %}  
           </select>
           <button class="btn btn-primary" type="botton">Generate Plot</button>
+         </form> 
         </div>
-        </form>
     </div>
   </div>
 </section>

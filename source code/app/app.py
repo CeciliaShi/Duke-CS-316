@@ -23,6 +23,7 @@ plotly.tools.set_credentials_file(username=conf.pp_conf["username"], api_key=con
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app, session_options={'autocommit': False})
+countries = db.session.query(models.Location.country).distinct(models.Location.country).all()
 
 @app.route('/')
 def homepage():
@@ -84,8 +85,9 @@ def victimType():
 
 @app.route('/weapon-type/')
 def weaponType():
+
 	Weapon = weapon(weapon_type)
-	return render_template("weapon-type.html", Weapon = Weapon)
+	return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
 #	return render_template("weapon-type.html")
 
 @app.route('/comments/')
