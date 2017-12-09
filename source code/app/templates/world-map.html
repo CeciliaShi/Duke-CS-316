@@ -16,22 +16,9 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- Include Date Range Picker -->
- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 </head>
 
 <body>
-<script>
-$.fn.daterangepicker.noConflict = function(){
-   $.fn.daterangepicker = old;
-   return this;
-};
-</script>
-
-<script type="text/javascript">
-$(function() {
-    $('input[name="daterange"]').daterangepicker();
-});
-</script>
 
 <!-- Header Section -->
 <section class="tophead" role="tophead"> 
@@ -73,6 +60,8 @@ $(function() {
                 <option value="0">Frequency</option> 
                 <option value="1">Fatalities and Injuries</option> 
             </select>
+            <h4> Date Range </h4>
+            <input type="text" name="daterange" value="01/01/2015 - 01/31/2015" style="margin:0px auto; display:block;"/>
             <button class="btn btn-primary" type="botton">Generate Plot</button>
          </form> 
         </div>
@@ -97,9 +86,21 @@ $(function() {
 <!-- <script src="{{ url_for('static', filename = 'js/retina.min.js')}}"></script> -->
 <script src="{{ url_for('static', filename = 'js/modernizr.js')}}"></script> 
 <script src="{{ url_for('static', filename = 'js/main.js')}}"></script> 
+<!--
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/moment.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.min.js')}}"></script>
+-->
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('input[name="daterange"]').daterangepicker();
+});
+</script>
+
 </body>
 </html>
