@@ -31,7 +31,7 @@ def gt_freq(df, code):
         colorbar = dict(
             thickness = 10,
             autotick = False,
-            title = 'Google Trend Weighted Average'),
+            title = 'Google Trend'),
       ) ]
 
     layout = dict(
