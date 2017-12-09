@@ -57,9 +57,9 @@ def world_map():
 #	return render_template("world-map.html", victim = victim)
 
 
-@app.route('/attack-type/', methods = ['GET'])
+@app.route('/attack-type/', methods = ['GET', 'POST'])
 def attackType():
-	a = request.form["type"]
+	a = request.form.get("type")
 	attack_type = (db.session.query(Incident.international,Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
                join(BelongedTo, Incident.id == BelongedTo.incident_id).filter(BelongedTo.suicide_attack == a).all()) 
 	attack_type =  pd.DataFrame(attack_type)
