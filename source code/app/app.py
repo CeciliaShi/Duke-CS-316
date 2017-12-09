@@ -27,7 +27,7 @@ countries = db.session.query(models.Location.country).distinct(models.Location.c
 
 @app.route('/')
 def homepage():
-    return render_template("index.html")
+	return render_template("index.html")
 
 # @app.route('/about-us/')
 # def worldmap():
@@ -61,7 +61,7 @@ def attackType():
 	attack_country = request.form.get("type")
 	if attack_country is None:
 		attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
-               join(BelongedTo, Incident.id == BelongedTo.incident_id).all()) 
+			   join(BelongedTo, Incident.id == BelongedTo.incident_id).all()) 
 	else:
 		attack_type = int(attack_type)
 		attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
@@ -90,50 +90,50 @@ def victimType():
 
 	if graph_type is None | graph_type == "0":
 		victim_frequency = db.session.query(func.count(Targeted.incident_id).label('count'), Targeted.victim_type).group_by(Targeted.victim_type).order_by(func.count(Targeted.incident_id)).all()
-        plot_victim = plot_victim_frequency(victim_frequency)
-    else:
-    	victime_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
-    		.join(Targeted.incident)
-    		.group_by(Targeted.victim_type)
-    		.order_by(func.sum(Incident.nkill))).all()
-    	plot_victim = plot_victim_fatality(victime_fatality)
-    
-    if victim_type is None | victim_type == "Private Citizens & Property":
-    	victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
-    		.filter(Targeted.victim_type=="Private Citizens & Property")
-    		.join(Targeted.incident)
-    		.group_by(Targeted.subtype)).all()
-    else:
-     	victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
-    		.filter(Targeted.victim_type==victim_type)
-    		.join(Targeted.incident)
-    		.group_by(Targeted.subtype)).all()
-    
-    plot_subtype = plot_victim_subtype(victim_subtype)		   	
+		plot_victim = plot_victim_frequency(victim_frequency)
+	else:
+		victime_fatality = (db.session.query(Targeted.victim_type, func.sum(Incident.nkill).label('fatality'), func.sum(Incident.nwound).label('injury'))
+			.join(Targeted.incident)
+			.group_by(Targeted.victim_type)
+			.order_by(func.sum(Incident.nkill))).all()
+		plot_victim = plot_victim_fatality(victime_fatality)
+	
+	if victim_type is None | victim_type == "Private Citizens & Property":
+		victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
+			.filter(Targeted.victim_type=="Private Citizens & Property")
+			.join(Targeted.incident)
+			.group_by(Targeted.subtype)).all()
+	else:
+		victim_subtype = (db.session.query(Targeted.subtype, func.sum(Incident.nkill), func.sum(Incident.nwound))
+			.filter(Targeted.victim_type==victim_type)
+			.join(Targeted.incident)
+			.group_by(Targeted.subtype)).all()
+	
+	plot_subtype = plot_victim_subtype(victim_subtype)		   	
 	return render_template("victim-type.html", Victim = plot_victim, Victim_Subtype = plot_subtype, countries = countries, Victime_types = victim_types)
 
 @app.route('/weapon-type/', methods = ['GET', 'POST'])
 def weaponType():
-        country = request.form.get("country")  
-        if country is None:
-        	weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
-        		.join(Incident,Incident.id == Used.incident_id)
-      			.group_by(Used.weapon_type)
-     			.order_by(func.count(Used.incident_id).desc())).all()
+		country = request.form.get("country")  
+		if country is None:
+			weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
+				.join(Incident,Incident.id == Used.incident_id)
+				.group_by(Used.weapon_type)
+				.order_by(func.count(Used.incident_id).desc())).all()
 
-        else:
-        	weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
-        		.join(Incident,Incident.id == Used.incident_id)
-        		.join(Happened,Happened.incident_id == Incident.id)
-                        .join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))
-                        .filter(Location.country == country)
-      			.group_by(Used.weapon_type)
-     			.order_by(func.count(Used.incident_id).desc())).all()
+		else:
+			weapon_type = (db.session.query(func.count(Used.incident_id).label('count'), Used.weapon_type,(func.sum(Incident.nkill)+func.sum(Incident.nwound)).label('fatality'))
+				.join(Incident,Incident.id == Used.incident_id)
+				.join(Happened,Happened.incident_id == Incident.id)
+						.join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))
+						.filter(Location.country == country)
+				.group_by(Used.weapon_type)
+				.order_by(func.count(Used.incident_id).desc())).all()
 
-        weapon_type = pd.DataFrame(weapon_type)
+		weapon_type = pd.DataFrame(weapon_type)
 
-        Weapon = weapon(weapon_type)
-        return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
+		Weapon = weapon(weapon_type)
+		return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
 #       return render_template("weapon-type.html")
 
 @app.route('/comments/')
@@ -142,8 +142,8 @@ def comments():
 
 @app.route("/test" , methods=['GET', 'POST'])
 def test():
-    select = request.form.get('type')
-    return(str(select))
+	select = request.form.get('type')
+	return(str(select))
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0")
+	app.run(host = "0.0.0.0")
