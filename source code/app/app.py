@@ -1,5 +1,5 @@
 from models import *
-from sqlalchemy import func, and_
+from sqlalchemy import func, and_, extract
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import models
@@ -7,16 +7,16 @@ import pandas as pd
 import plotly
 import plotly_conf as conf
 ## local scripts
-from Ploty.kw import kill_wound
-from Ploty.freq import freq
 from Ploty.plot_victim import *
-from Ploty.query_freq import freq, fq
+from Ploty.worldmap_freq import freq
+from Ploty.worldmap_woundkill import kill_wound
+from Ploty.worldmap_trend import gt_freq
 from Ploty.weapon_type import weapon
 #from Ploty.attack_info import attack_type, attack_info
 from Ploty.attack_info import attack_info
 import Ploty.trend as trend
 import Ploty.google_trend as GT
-from Ploty.weighted_avg import search_map, gt_freq
+
 
 plotly.tools.set_credentials_file(username=conf.pp_conf["username"], api_key=conf.pp_conf["api_key"])
 
@@ -29,31 +29,44 @@ countries = db.session.query(models.Location.country).distinct(models.Location.c
 def homepage():
 	return render_template("index.html")
 
-# @app.route('/about-us/')
-# def worldmap():
-# 	return render_template("about-us.html")
 
 @app.route('/visual/')
 def visual():
 	return render_template("visual.html")
 
-@app.route('/world-map/')
+@app.route('/world-map/',methods = ['GET', 'POST'])
 def world_map():
 	code = pd.read_csv("Ploty/code_correct.csv")
-	#df = pd.read_csv("Ploty/freq.csv")
-	#iframe = freq(df,code)
-	#df = pd.read_csv("Ploty/kw.csv")
-	#iframe = kill_wound(df,code)
-	#iframe = "https://plot.ly/~KimJin/0/550/550"
-#	victim = plot_victim(victim_type)
+	map_type = request.form.get("map_type")  
+	search_map = (db.session.query(GoogleTrend.year,GoogleTrend.month, GoogleTrend.weighted_avg, Location.country).
+		filter(Incident.date.isnot(None)).
+		join(Incident,and_(GoogleTrend.year == extract('year', Incident.date),GoogleTrend.month == extract('month', Incident.date))).
+		join(Happened,Happened.incident_id == Incident.id).
+		join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))).all()
 
-	frequency = freq(fq, code)
+	search_map = pd.DataFrame(search_map)
+
 	trend_map = gt_freq(search_map, code)
-	return render_template("world-map.html", frequency = frequency, trend_map = trend_map)
-		#Trend = Trend, Google_trend = Google_trend)
-		#trend_map = trend_map)
-#	return render_template("world-map.html", iframe = iframe, victim = victim)
-#	return render_template("world-map.html", victim = victim)
+
+	
+	if map_type is None:
+		query_fq = (db.session.query(Location.country).
+			join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
+		query_fq = pd.DataFrame(query_fq)
+		frequency= freq(query_fq,code)
+	elif map_type == "0":
+		query_fq = (db.session.query(Location.country).
+			join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
+		query_fq = pd.DataFrame(query_fq)
+		frequency= freq(query_fq,code)
+	else:
+		query_wk = (db.session.query(Incident.nkill, Incident.nwound, Location.country).
+			join(Happened, and_(Happened.incident_id==Incident.id)).
+			join(Location, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
+		query_wk = pd.DataFrame(query_wk)
+		frequency= kill_wound(query_wk,code)
+
+	return render_template("world-map.html", overall_map = frequency, trend_map = trend_map)
 
 
 @app.route('/attack-type/', methods = ['GET', 'POST'])
@@ -73,12 +86,22 @@ def attackType():
 	Attack = attack_info(attack_type)
 	return render_template("attack-type.html", Attack = Attack, countries = countries)
 
-@app.route('/trend/')
+@app.route('/trend/', methods = ['GET', 'POST'])
 def trends():
 	# Trend = trend.trend(trend.base_query)
-	Google_trend = GT.google_trend(GT.base_query)
-	Trend = trend.trend(trend.base_query)
-	return render_template("trend.html", Trend = Trend, Google_trend = Google_trend)
+	trend_type = request.form.get("graph_type")
+	base_query = (db.session.query(extract('year',Incident.date), func.sum(Incident.nkill), func.sum(Incident.nwound)).
+		filter(Incident.date.isnot(None)).group_by(extract('year', Incident.date)).
+		order_by(extract('year',Incident.date))).all()
+	if trend_type is None:
+		trend_plot = trend.trend(base_query)
+	elif trend_type == "0":
+		trend_plot = trend.trend(base_query)
+	else:
+		base_query = (db.session.query(GoogleTrend.date, GoogleTrend.weighted_avg)).all()
+		trend_plot = GT.google_trend(base_query)
+
+	return render_template("trend.html", Trend = trend_plot)
 	#return render_template("trend.html", Google_trend = Google_trend, Victim = Victim)
 
 @app.route('/victim-type/', methods = ['GET', 'POST'])
