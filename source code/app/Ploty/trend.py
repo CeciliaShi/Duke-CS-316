@@ -1,15 +1,5 @@
-from models import Incident
-from models import db
-from sqlalchemy import func
-from sqlalchemy import extract
 import plotly.plotly as py
 import plotly.graph_objs as go
-
-base_query = (db.session.query(extract('year',Incident.date), func.sum(Incident.nkill), func.sum(Incident.nwound))
-	.filter(Incident.date.isnot(None))
-	.group_by(extract('year', Incident.date))
-	.order_by(extract('year',Incident.date))
-	).all()
 
 def trend(res):
 	trace_high = go.Scatter(

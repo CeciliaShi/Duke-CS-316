@@ -58,13 +58,27 @@ $(function() {
       <div class="col-md-12 work-detail-margin detail-image">
         <div class="work-image">
         <p><div>
-        <iframe id="igraph" style="border:none" src="{{frequency}}" width="100%" height="700"></iframe>
+        <iframe id="igraph" style="border:none" src="{{overall_map}}" width="100%" height="700"></iframe>
         <iframe id="igraph" style="border:none" src="{{trend_map}}" width="100%" height="700"></iframe>
         <!--<iframe id="igraph" style="border:none" src="{{Trend}}" width="100%" height="700"></iframe> 
         <iframe id="igraph" style="border:none" src="{{Google_trend}}" width="100%" height="700"></iframe>  -->               
         </div> </p>
         </div>
       </div>
+      <div class="col-md-4 work-detail-margin detail-contentbox">
+        <div class="detail-content">
+          <form method = "POST">
+            <h4> Graph Type </h4>
+            <select name="map_type" class="selectpicker" style="margin:0px auto; display:block;">
+                <option value="0">Frequency</option> 
+                <option value="1">Fatalities and Injuries</option> 
+            </select>
+            <button class="btn btn-primary" type="botton">Generate Plot</button>
+         </form> 
+        </div>
+      </div>
+
+
     </div>  
   </div>
 </section>

@@ -1,9 +1,6 @@
-from models import GoogleTrend
-from models import db
 import plotly.plotly as py
 import plotly.graph_objs as go
 
-base_query = (db.session.query(GoogleTrend.date, GoogleTrend.weighted_avg)).all()
 
 def google_trend(res):
     trend_year = go.Scatter(

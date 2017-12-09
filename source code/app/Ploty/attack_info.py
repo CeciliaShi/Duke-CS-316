@@ -1,6 +1,3 @@
-from models import Incident
-from models import BelongedTo
-from models import db
 import pandas as pd
 import numpy as np
 import plotly.plotly as py

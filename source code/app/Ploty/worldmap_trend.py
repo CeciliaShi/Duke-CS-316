@@ -1,4 +1,3 @@
-from models import *
 import pandas as pd
 import numpy as np
 import plotly.plotly as py
@@ -6,17 +5,7 @@ import plotly.graph_objs as go
 import plotly
 from sqlalchemy import *
 
-search_map = (db.session.query(GoogleTrend.year,GoogleTrend.month, GoogleTrend.weighted_avg, Location.country)
-              .filter(Incident.date.isnot(None))
-              .join(Incident,and_(GoogleTrend.year == extract('year', Incident.date),
-                                       GoogleTrend.month == extract('month', Incident.date)))
-              .join(Happened,Happened.incident_id == Incident.id)
-              .join(Location,and_(Location.latitude == Happened.latitude,
-                                  Location.longitude == Happened.longitude))).all()
-
-
 def gt_freq(df, code):
-    df = pd.DataFrame(df)
     df[['weighted_avg']] = df[['weighted_avg']].astype(float)
     df = df[['weighted_avg', 'country']]
     df = df.groupby(['country'], as_index=False).mean()

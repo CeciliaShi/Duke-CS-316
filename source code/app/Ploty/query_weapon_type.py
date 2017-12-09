@@ -1,8 +1,5 @@
-from models import *
-from sqlalchemy import func
 import plotly.plotly as py
 import plotly.graph_objs as go 
-import pandas as pd
 import plotly
 
 #plotly.tools.set_credentials_file(username='xiaozhou0614', api_key='nKS0ddIHYYjKmMf5AnRw')
