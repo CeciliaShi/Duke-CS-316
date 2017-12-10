@@ -73,12 +73,6 @@ class Targeted(db.Model):
         target = db.Column("target", db.String(500), nullable = False)
         incident = orm.relationship("Incident", back_populates="targeted")
 
-class Comment(db.Model):
-        __tablename__ = "comment"
-        user_id = db.Column("user_id", db.Sequence('user_id_seq'), nullable = False, primary_key=True)
-        name = db.Column("name",db.String(20), nullable = False)
-        message = db.Column("message", db.String(200), nullable = False)
-
 class GoogleTrend(db.Model):
         __tablename__ = "googletrend"
         date = db.Column("date", db.Date(), nullable = False, primary_key=True)
