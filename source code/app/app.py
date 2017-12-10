@@ -12,7 +12,6 @@ from Ploty.worldmap_freq import freq
 from Ploty.worldmap_woundkill import kill_wound
 from Ploty.worldmap_trend import gt_freq
 from Ploty.weapon_type import weapon
-#from Ploty.attack_info import attack_type, attack_info
 from Ploty.attack_info import attack_info
 import Ploty.trend as trend
 import Ploty.google_trend as GT
@@ -46,31 +45,21 @@ def world_map():
 	map_type = request.form.get("map_type")
 	startDate = request.form.get("startDate")
 	endDate = request.form.get("endDate")
-	#search_map = (db.session.query(GoogleTrend.year,GoogleTrend.month, GoogleTrend.weighted_avg, Location.country).
-	#	filter(Incident.date.isnot(None)).
-	#	join(Incident,and_(GoogleTrend.year == extract('year', Incident.date),GoogleTrend.month == extract('month', Incident.date))).
-	#	join(Happened,Happened.incident_id == Incident.id).
-	#	join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude))).all()
-	#
-	#search_map = pd.DataFrame(search_map)
 
-	#trend_map = gt_freq(search_map, code)
-	
-	#if map_type is None:
-	#	#query_fq = (db.session.query(Location.country).
-	#	#	join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
-	#	#query_fq = pd.DataFrame(query_fq)
-	#	#frequency= freq(query_fq,code)
-	#	frequency = cache["frequency"]
 	if map_type == "0":
-		query_fq = (db.session.query(Location.country).
-			join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
+		query_fq = (db.session.query(Location.country)
+			.join(Happened, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude))
+			.join(Incident, Happened.incident_id == Incident.id)
+			.filter(and_(Incident.date <= endDate,Incident.date >= startDate))
+			.all())
 		query_fq = pd.DataFrame(query_fq)
 		frequency= freq(query_fq,code)
 	else:
-		query_wk = (db.session.query(Incident.nkill, Incident.nwound, Location.country).
-			join(Happened, and_(Happened.incident_id==Incident.id)).
-			join(Location, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude)).all())
+		query_wk = (db.session.query(Incident.nkill, Incident.nwound, Location.country)
+			.join(Happened, and_(Happened.incident_id==Incident.id))
+			.join(Location, and_(Location.latitude==Happened.latitude, Location.longitude == Happened.longitude))
+			.filter(and_(Incident.date <= endDate,Incident.date >= startDate))
+			.all())
 		query_wk = pd.DataFrame(query_wk)
 		frequency= kill_wound(query_wk,code)
 
