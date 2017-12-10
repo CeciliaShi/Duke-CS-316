@@ -19,7 +19,7 @@ import Ploty.google_trend as GT
 
 import pickle
 
-plotly.tools.set_credentials_file(username=conf.pp_conf["username"], api_key=conf.pp_conf["api_key"])
+plotly.tools.set_credentials_file(username=conf.pp_conf_cache["username"], api_key=conf.pp_conf_cache["api_key"])
 db = SQLAlchemy(app, session_options={'autocommit': False})
 countries = db.session.query(models.Location.country).distinct(models.Location.country).all()
 

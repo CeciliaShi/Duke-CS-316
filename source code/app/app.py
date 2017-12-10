@@ -112,7 +112,7 @@ def victimType():
 	graph_type = request.form.get("graph_type")
 	victim_type = request.form.get("victim_type")
 
-	if country is None and graph_type is None:
+	if country is None and graph_type is None and victim_type is None:
 		plot_victim = cache["plot_victim"]
 		plot_subtype = cache["plot_subtype"]
 		return render_template("victim-type.html", Victim = plot_victim, Victim_Subtype = plot_subtype, countries = countries, Victim_types = victim_types)
