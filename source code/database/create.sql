@@ -82,9 +82,4 @@ CREATE TABLE Targeted
  FOREIGN KEY(incident_id) REFERENCES Incident(id)
 );
 
-CREATE TABLE Comment
-(user_id SERIAL NOT NULL PRIMARY KEY,
- name VARCHAR(20) NOT NULL,
- message VARCHAR(200) NOT NULL
-);
 
