@@ -110,8 +110,6 @@ def main():
 	cache_trend(cache)
 	cache_vt(cache)
 	cache_wt(cache)
-	import pdb
-	pdb.set_trace()
 	with open("cache.pickle","wb") as f:
 		pickle.dump(cache,f)
 
