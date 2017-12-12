@@ -6,6 +6,9 @@ Xilin Cecilia Shi:
 * Helped with the construction of the web page using HTML
 * Improved the web interface by adding more features and pages
 * Helped with the connection of the database and webpage
+* Gathered and processed data from Google Trend
+* Created the Prezi presentation and wrapped up report
+* Embed user interactions into the website
 
 Hao Sheng:
 
