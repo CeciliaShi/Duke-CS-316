@@ -21,6 +21,8 @@ Hao Sheng:
 * Rearrange code into Preprocess.py for data preparation
 * Embed plotly visualizations into our website
 * Html, css & js design
+* Wrap up report
+* Generate slides for demo
 
 Xialingzi Jin:
 
