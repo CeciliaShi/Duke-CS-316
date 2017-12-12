@@ -6,6 +6,9 @@ Xilin Cecilia Shi:
 * Helped with the construction of the web page using HTML
 * Improved the web interface by adding more features and pages
 * Helped with the connection of the database and webpage
+* Gathered and processed data from Google Trend
+* Created the Prezi presentation and wrapped up report
+* Embed user interactions into the website
 
 Hao Sheng:
 
@@ -40,7 +43,10 @@ Xiaozhou Wang:
 * Wrote SQL queries that allow users to make selections
 * Made visualization plots
 * Cleaned and connected outside data
-* Created three python scripts used for web visualization  
+* Created three python scripts used for web visualization
+* Gathered and processed data from Google Trend
+* Embed user interactions into the website
+* Created the Prezi presentation and wrapped up report 
 
 Xingyu Yan:  
 
@@ -49,6 +55,8 @@ Xingyu Yan:
 * Processed and transformed data in python and generated visualizations.
 * Set up the database in the virtual machine. 
 * Queried data using sqlalchemy and generated visualizations using plotly in Python.   
-
+* Gathered and processed data from google trend.
+* Added user interactions to the web application.  
+* Wrote report.
 
 
