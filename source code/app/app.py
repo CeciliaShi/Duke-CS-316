@@ -203,11 +203,6 @@ def weaponType():
 
 			Weapon = weapon(weapon_type)
 			return render_template("weapon-type.html", Weapon = Weapon, countries = countries)
-#       return render_template("weapon-type.html")
-
-#@app.route('/comments/')
-#def comments():
-#	return render_template("comments.html")
 
 @app.route("/test" , methods=['GET', 'POST'])
 def test():
