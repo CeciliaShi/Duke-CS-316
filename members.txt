@@ -43,7 +43,10 @@ Xiaozhou Wang:
 * Wrote SQL queries that allow users to make selections
 * Made visualization plots
 * Cleaned and connected outside data
-* Created three python scripts used for web visualization  
+* Created three python scripts used for web visualization
+* Gathered and processed data from Google Trend
+* Embed user interactions into the website
+* Created the Prezi presentation and wrapped up report 
 
 Xingyu Yan:  
 
