@@ -28,7 +28,10 @@ Xialingzi Jin:
 * Created test-sample.sql file that modifies the database on behalf of the user and tested such sql statement in the sample database 
 * Made visualization plots
 * Cleaned and connected outside data 
-* Created three python scripts used for web visualization 
+* Created three python scripts used for web visualization
+* Using google trend results integrated with python scripts for web visualization
+* Created a video summarizing global terrorist attacks
+* Wrapped up report
 
 Xiaozhou Wang:
 
