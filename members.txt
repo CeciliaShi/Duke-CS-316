@@ -15,7 +15,9 @@ Hao Sheng:
 * Use python scripts to embed plotly visualization to web interface
 * Import database from postgresql to python by using sqlalchemy for python
 * Manage js and css to better design the web interface
-* Rearrange code into Preprocess.py for data preparation 
+* Rearrange code into Preprocess.py for data preparation
+* Embed plotly visualizations into our website
+* Html, css & js design
 
 Xialingzi Jin:
 
