@@ -68,7 +68,7 @@ def world_map():
 
 @app.route('/attack-type/', methods = ['GET', 'POST'])
 def attackType():
-	attack_country = request.form.get("type")
+	attack_country = request.form.get("attack_country")
 	if attack_country is None:
 		#attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
 		#	   join(BelongedTo, Incident.id == BelongedTo.incident_id).all())
@@ -76,13 +76,16 @@ def attackType():
 		Attack = cache['Attack']
 		return render_template("attack-type.html", Attack = Attack, countries = countries)
 	else:
-		attack_type = int(attack_type)
+		import pdb
+		#attack_type = int(attack_type)
+		pdb.set_trace()
 		attack_type = (db.session.query(Incident.international, Incident.property_damage, BelongedTo.suicide_attack, BelongedTo.succussful_attack).
-		join(BelongedTo, Incident.id == BelongedTo.incident_id).join(Incident,Incident.id == Used.incident_id).
+		join(BelongedTo, Incident.id == BelongedTo.incident_id).join(Used,Incident.id == Used.incident_id).
 		join(Happened,Happened.incident_id == Incident.id).
 		join(Location,and_(Location.latitude == Happened.latitude,Location.longitude == Happened.longitude)).
 		filter(Location.country == attack_country).all()) 
 		attack_type =  pd.DataFrame(attack_type)
+		pdb.set_trace()
 		Attack = attack_info(attack_type)
 		return render_template("attack-type.html", Attack = Attack, countries = countries)
 
