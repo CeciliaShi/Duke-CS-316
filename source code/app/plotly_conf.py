@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 pp_conf = {
-	"username" : "shixilin94",
-	"api_key" : "mAgbRl8SJIHcLJeCx2H0" 
+	"username" : "kimmyjin",
+	"api_key" : "33rYqyCjsRzMg0aHG8zK" 
 }
 
 pp_conf_cache = {
